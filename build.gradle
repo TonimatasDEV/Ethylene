@@ -1,0 +1,50 @@
+//file:noinspection VulnerableLibrariesLocal
+
+import dev.photoncore.tasks.Utils
+import dev.photoncore.tasks.CreateTextFile
+
+plugins {
+    id("java")
+}
+
+group = "dev.photoncore.photoncore"
+version = "1.0.0"
+base.archivesName.set("PhotonCore")
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation("net.minestom:minestom-snapshots:8f46913486")
+}
+
+tasks.register("createLibrariesFile", CreateTextFile) {
+    fileName = "libraries.txt"
+    //Utils.getDependencies(rootProject.configurations.implementation.get())
+    content = Utils.getDependencies(configurations.implementation.copy())
+}
+
+tasks.register("createRepositoriesFile", CreateTextFile) {
+    fileName = "repositories.txt"
+    content = Utils.getRepositories(repositories)
+}
+
+tasks.jar {
+    from(createLibrariesFile)
+    from(createRepositoriesFile)
+
+    manifest {
+        attributes(
+                "Launcher-Agent-Class": "dev.photoncore.server.launcher.Agent",
+                "Agent-Class": "dev.photoncore.server.launcher.Agent",
+                "Premain-Class": "dev.photoncore.server.launcher.Agent",
+                "Main-Class": "dev.photoncore.server.launcher.Launcher",
+                "Multi-Release": true
+        )
+    }
+
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+
