@@ -1,11 +1,13 @@
 <configuration>
-    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <conversionRule conversionWord="photon" class="dev.photoncore.server.utils.PhotonHighlightingConverter"/>
+    
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>[%d{HH:mm:ss}] [%level] [%logger] %msg%n</pattern>
+            <pattern>[%gray(%d{HH:mm:ss})] [%photon(%level)] [%cyan(%logger{36})] %msg%n</pattern>
         </encoder>
     </appender>
 
     <root level="info">
-        <appender-ref ref="STDOUT" />
+        <appender-ref ref="CONSOLE" />
     </root>
 </configuration>
