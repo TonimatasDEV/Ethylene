@@ -15,7 +15,7 @@ import java.util.jar.JarFile;
 public class LibraryInstaller {
     private static final String filledChar = "=";
     private static final String voidChar = " ";
-    private static final int numberChars = 10;
+    private static final int numberChars = 20;
     
     public static void init() {
         int max = LibraryManager.getResources(LibraryManager.Type.LIBRARIES).size();
@@ -34,7 +34,14 @@ public class LibraryInstaller {
 
                 if (update) {
                     int filledParts = now / part;
-                    String result = "Downloading libraries: [" + filledChar.repeat(filledParts) + voidChar.repeat(numberChars - filledParts) + "]";
+                    
+                    String result;
+                    if (numberChars >= filledParts) {
+                        result = "Downloading libraries: [" + filledChar.repeat(filledParts) + voidChar.repeat(numberChars - filledParts) + "]";
+                    } else {
+                        result = "Downloading libraries: [" + filledChar.repeat(numberChars) + "]";
+                    }
+                    
                     printReplace(result, library);
                     update = false;
                 }

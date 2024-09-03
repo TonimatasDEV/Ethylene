@@ -1,5 +1,3 @@
-//file:noinspection VulnerableLibrariesLocal
-
 import dev.photoncore.tasks.Utils
 import dev.photoncore.tasks.CreateTextFile
 
@@ -17,11 +15,11 @@ repositories {
 
 dependencies {
     implementation("net.minestom:minestom-snapshots:8f46913486")
+    implementation("ch.qos.logback:logback-classic:1.5.7")
 }
 
 tasks.register("createLibrariesFile", CreateTextFile) {
     fileName = "libraries.txt"
-    //Utils.getDependencies(rootProject.configurations.implementation.get())
     content = Utils.getDependencies(configurations.implementation.copy())
 }
 
