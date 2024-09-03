@@ -4,6 +4,8 @@ import dev.photoncore.server.init.Commands;
 import dev.photoncore.server.init.Events;
 import dev.photoncore.server.init.Levels;
 import net.minestom.server.MinecraftServer;
+import net.minestom.server.entity.Player;
+import net.minestom.server.extras.MojangAuth;
 import net.minestom.server.instance.Instance;
 import org.fusesource.jansi.AnsiConsole;
 import org.slf4j.Logger;
@@ -18,6 +20,7 @@ public class Main {
         AnsiConsole.systemInstall();
         MinecraftServer server = MinecraftServer.init();
 
+        MojangAuth.init();
         Levels.init();
         Events.init();
         Commands.init();
@@ -28,5 +31,12 @@ public class Main {
     
     public static void stop() {
         MinecraftServer.getInstanceManager().getInstances().forEach(Instance::saveChunksToStorage);
+
+        for (Player player : MinecraftServer.getConnectionManager().getOnlinePlayers()) {
+            player.kick("Server closed.");
+        }
+        
+        MinecraftServer.stopCleanly();
+        System.exit(0);
     }
 }
