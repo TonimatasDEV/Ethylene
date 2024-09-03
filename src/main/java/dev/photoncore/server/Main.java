@@ -1,6 +1,10 @@
 package dev.photoncore.server;
 
+import dev.photoncore.server.init.Commands;
+import dev.photoncore.server.init.Events;
+import dev.photoncore.server.init.Levels;
 import net.minestom.server.MinecraftServer;
+import net.minestom.server.instance.Instance;
 import org.fusesource.jansi.AnsiConsole;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,8 +17,16 @@ public class Main {
         
         AnsiConsole.systemInstall();
         MinecraftServer server = MinecraftServer.init();
-        
+
+        Levels.init();
+        Events.init();
+        Commands.init();
+
         server.start("0.0.0.0", 25565);
         LOGGER.info("Done! ({}s)",  String.format("%.2f", (double) (System.currentTimeMillis() - startTime) / 1000));
+    }
+    
+    public static void stop() {
+        MinecraftServer.getInstanceManager().getInstances().forEach(Instance::saveChunksToStorage);
     }
 }
