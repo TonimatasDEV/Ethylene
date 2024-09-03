@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 
 public class Main {
     public static Logger LOGGER = LoggerFactory.getLogger(Main.class);
+    public static boolean stopping = false;
 
     public static void main(String[] args) {
         long startTime = System.currentTimeMillis();
@@ -30,11 +31,14 @@ public class Main {
     }
     
     public static void stop() {
-        MinecraftServer.getInstanceManager().getInstances().forEach(Instance::saveChunksToStorage);
+        stopping = true;
 
         for (Player player : MinecraftServer.getConnectionManager().getOnlinePlayers()) {
             player.kick("Server closed.");
         }
+        
+        LOGGER.info("Saving worlds...");
+        MinecraftServer.getInstanceManager().getInstances().forEach(Instance::saveChunksToStorage);
         
         MinecraftServer.stopCleanly();
         System.exit(0);
