@@ -1,6 +1,7 @@
 package dev.photoncore.server.events;
 
 import net.minestom.server.coordinate.Pos;
+import net.minestom.server.coordinate.Vec;
 import net.minestom.server.entity.ItemEntity;
 import net.minestom.server.entity.Player;
 import net.minestom.server.event.GlobalEventHandler;
@@ -14,12 +15,12 @@ public class ItemEvents {
             ItemEntity itemEntity = new ItemEntity(event.getItemStack());
             Pos playePos = event.getPlayer().getPosition();
             double eyeHeight = event.getPlayer().getEyeHeight() - (double)0.3F;
-
+            Vec velocity = event.getPlayer().getPosition().direction().mul(6);
+            
             itemEntity.setPickupDelay(40, TimeUnit.SERVER_TICK);
             itemEntity.setMergeable(true);
             itemEntity.setMergeRange(1);
-            
-            //itemEntity.setVelocity();
+            itemEntity.setVelocity(velocity);
             itemEntity.setInstance(event.getPlayer().getInstance(), new Pos(playePos.x(), eyeHeight + playePos.y(), playePos.z()));
         });
         

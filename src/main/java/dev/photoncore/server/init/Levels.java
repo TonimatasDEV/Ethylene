@@ -6,6 +6,7 @@ import net.minestom.server.instance.InstanceManager;
 import net.minestom.server.instance.LightingChunk;
 import net.minestom.server.instance.anvil.AnvilLoader;
 import net.minestom.server.instance.block.Block;
+import net.minestom.server.world.DimensionType;
 
 public class Levels {
     public static InstanceContainer OVERWORLD;
@@ -14,7 +15,7 @@ public class Levels {
         InstanceManager instanceManager = MinecraftServer.getInstanceManager();
         
         // Overworld
-        OVERWORLD = instanceManager.createInstanceContainer();
+        OVERWORLD = instanceManager.createInstanceContainer(DimensionType.OVERWORLD);
 
         OVERWORLD.setChunkLoader(new AnvilLoader("world"));
         OVERWORLD.setChunkSupplier(LightingChunk::new);
