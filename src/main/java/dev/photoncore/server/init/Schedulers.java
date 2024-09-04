@@ -29,6 +29,6 @@ public class Schedulers {
         schedulerManager.buildTask(() -> {
             LOGGER.info("Saving all instances...");
             MinecraftServer.getInstanceManager().getInstances().forEach(Instance::saveChunksToStorage);
-        }).repeat(5, TimeUnit.MINUTE).schedule();
+        }).delay(5, TimeUnit.MINUTE).repeat(5, TimeUnit.MINUTE).schedule();
     }
 }
