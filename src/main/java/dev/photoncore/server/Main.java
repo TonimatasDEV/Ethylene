@@ -1,13 +1,8 @@
 package dev.photoncore.server;
 
-import dev.photoncore.server.init.Blocks;
-import dev.photoncore.server.init.Commands;
-import dev.photoncore.server.init.Events;
-import dev.photoncore.server.init.Levels;
+import dev.photoncore.server.init.*;
 import net.minestom.server.MinecraftServer;
-import net.minestom.server.entity.Player;
 import net.minestom.server.extras.MojangAuth;
-import net.minestom.server.instance.Instance;
 import org.fusesource.jansi.AnsiConsole;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,21 +22,13 @@ public class Main {
         Events.init();
         Commands.init();
         Blocks.init();
+        Schedulers.init();
 
         server.start("0.0.0.0", 25565);
         LOGGER.info("Done! ({}s)",  String.format("%.2f", (double) (System.currentTimeMillis() - startTime) / 1000));
     }
     
     public static void stop() {
-        stopping = true;
-
-        for (Player player : MinecraftServer.getConnectionManager().getOnlinePlayers()) {
-            player.kick("Server closed.");
-        }
-        
-        LOGGER.info("Saving worlds...");
-        MinecraftServer.getInstanceManager().getInstances().forEach(Instance::saveChunksToStorage);
-        
         MinecraftServer.stopCleanly();
         System.exit(0);
     }
