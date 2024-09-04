@@ -1,5 +1,6 @@
 package dev.photoncore.server;
 
+import dev.photoncore.server.init.Blocks;
 import dev.photoncore.server.init.Commands;
 import dev.photoncore.server.init.Events;
 import dev.photoncore.server.init.Levels;
@@ -25,6 +26,7 @@ public class Main {
         Levels.init();
         Events.init();
         Commands.init();
+        Blocks.init();
 
         server.start("0.0.0.0", 25565);
         LOGGER.info("Done! ({}s)",  String.format("%.2f", (double) (System.currentTimeMillis() - startTime) / 1000));
