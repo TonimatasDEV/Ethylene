@@ -41,7 +41,7 @@ public class ConnectedPlacementRule extends BlockPlacementRule {
 
             Block faceBlock = instance.getBlock(point.relative(face));
 
-            if (faceBlock.isSolid()) {
+            if (faceBlock.isSolid()) { // TODO Add all ignored blocks. Like Lantern, closed trapdoor, chain....
                 properties.put(face.name().toLowerCase(Locale.ENGLISH), "true");
             } else {
                 properties.put(face.name().toLowerCase(Locale.ENGLISH), "false");
