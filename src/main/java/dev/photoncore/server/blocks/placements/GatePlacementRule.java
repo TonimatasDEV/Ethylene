@@ -1,7 +1,6 @@
 package dev.photoncore.server.blocks.placements;
 
 import net.minestom.server.instance.block.Block;
-import net.minestom.server.instance.block.BlockFace;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

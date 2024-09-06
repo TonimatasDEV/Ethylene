@@ -46,11 +46,31 @@ public class Blocks {
         registerHandler(new TrapdoorHandler(Block.WARPED_TRAPDOOR.namespace()));
         
         registerHandler(new GateHandler(Block.OAK_FENCE_GATE.namespace()));
+        registerHandler(new GateHandler(Block.ACACIA_FENCE_GATE.namespace()));
+        registerHandler(new GateHandler(Block.BAMBOO_FENCE_GATE.namespace()));
+        registerHandler(new GateHandler(Block.BIRCH_FENCE_GATE.namespace()));
+        registerHandler(new GateHandler(Block.CHERRY_FENCE_GATE.namespace()));
+        registerHandler(new GateHandler(Block.CRIMSON_FENCE_GATE.namespace()));
+        registerHandler(new GateHandler(Block.DARK_OAK_FENCE_GATE.namespace()));
+        registerHandler(new GateHandler(Block.JUNGLE_FENCE_GATE.namespace()));
+        registerHandler(new GateHandler(Block.MANGROVE_FENCE_GATE.namespace()));
+        registerHandler(new GateHandler(Block.SPRUCE_FENCE_GATE.namespace()));
+        registerHandler(new GateHandler(Block.WARPED_FENCE_GATE.namespace()));
         
         // Placements
         
         // Gates
         blockManager.registerBlockPlacementRule(new GatePlacementRule(Block.OAK_FENCE_GATE));
+        blockManager.registerBlockPlacementRule(new GatePlacementRule(Block.ACACIA_FENCE_GATE));
+        blockManager.registerBlockPlacementRule(new GatePlacementRule(Block.BAMBOO_FENCE_GATE));
+        blockManager.registerBlockPlacementRule(new GatePlacementRule(Block.BIRCH_FENCE_GATE));
+        blockManager.registerBlockPlacementRule(new GatePlacementRule(Block.CHERRY_FENCE_GATE));
+        blockManager.registerBlockPlacementRule(new GatePlacementRule(Block.CRIMSON_FENCE_GATE));
+        blockManager.registerBlockPlacementRule(new GatePlacementRule(Block.DARK_OAK_FENCE_GATE));
+        blockManager.registerBlockPlacementRule(new GatePlacementRule(Block.JUNGLE_FENCE_GATE));
+        blockManager.registerBlockPlacementRule(new GatePlacementRule(Block.MANGROVE_FENCE_GATE));
+        blockManager.registerBlockPlacementRule(new GatePlacementRule(Block.SPRUCE_FENCE_GATE));
+        blockManager.registerBlockPlacementRule(new GatePlacementRule(Block.WARPED_FENCE_GATE));
         
         // Trapdoors
         blockManager.registerBlockPlacementRule(new TrapdoorPlacementRule(Block.OAK_TRAPDOOR));
