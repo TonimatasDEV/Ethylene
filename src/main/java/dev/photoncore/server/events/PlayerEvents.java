@@ -2,16 +2,18 @@ package dev.photoncore.server.events;
 
 import dev.photoncore.server.Main;
 import dev.photoncore.server.init.Levels;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.Style;
 import net.minestom.server.MinecraftServer;
+import net.minestom.server.adventure.audience.Audiences;
 import net.minestom.server.coordinate.Point;
 import net.minestom.server.coordinate.Pos;
 import net.minestom.server.entity.GameMode;
 import net.minestom.server.entity.Player;
 import net.minestom.server.entity.PlayerSkin;
 import net.minestom.server.event.GlobalEventHandler;
-import net.minestom.server.event.player.AsyncPlayerConfigurationEvent;
-import net.minestom.server.event.player.PlayerBlockInteractEvent;
-import net.minestom.server.event.player.PlayerBlockPlaceEvent;
+import net.minestom.server.event.player.*;
 import net.minestom.server.instance.block.Block;
 import net.minestom.server.instance.block.BlockHandler;
 
@@ -29,6 +31,9 @@ public class PlayerEvents {
             player.setSkin(PlayerSkin.fromUsername(player.getUsername()));
             player.setGameMode(GameMode.CREATIVE);
         });
+        
+        handler.addListener(AsyncPlayerPreLoginEvent.class, event -> Audiences.all().sendMessage(Component.text(event.getUsername() + " joined the game").style(Style.style(NamedTextColor.YELLOW))));
+        handler.addListener(PlayerDisconnectEvent.class, event -> Audiences.all().sendMessage(Component.text(event.getPlayer().getUsername() + " left the game").style(Style.style(NamedTextColor.YELLOW))));
         
         handler.addListener(PlayerBlockInteractEvent.class, event -> {
             Block blockInHand = event.getPlayer().getItemInHand(event.getHand()).material().block();
