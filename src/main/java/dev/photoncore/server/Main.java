@@ -24,7 +24,7 @@ public class Main {
         Blocks.init();
         Schedulers.init();
 
-        server.start("0.0.0.0", 1033);
+        server.start("0.0.0.0", 25565);
         LOGGER.info("Done! ({}s)",  String.format("%.2f", (double) (System.currentTimeMillis() - startTime) / 1000));
     }
     

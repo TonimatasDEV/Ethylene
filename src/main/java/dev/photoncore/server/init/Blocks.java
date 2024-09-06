@@ -3,6 +3,7 @@ package dev.photoncore.server.init;
 import dev.photoncore.server.blocks.handlers.CraftingTableHandler;
 import dev.photoncore.server.blocks.handlers.FurnaceHandler;
 import dev.photoncore.server.blocks.handlers.StrippedHandler;
+import dev.photoncore.server.blocks.handlers.TrapdoorHandler;
 import dev.photoncore.server.blocks.placements.*;
 import net.minestom.server.MinecraftServer;
 import net.minestom.server.instance.block.Block;
@@ -35,7 +36,33 @@ public class Blocks {
         registerHandler(new StrippedHandler(Block.MANGROVE_WOOD.namespace()));
         registerHandler(new StrippedHandler(Block.SPRUCE_WOOD.namespace()));
         
+        registerHandler(new TrapdoorHandler(Block.OAK_TRAPDOOR.namespace()));
+        registerHandler(new TrapdoorHandler(Block.OAK_TRAPDOOR.namespace()));
+        registerHandler(new TrapdoorHandler(Block.ACACIA_TRAPDOOR.namespace()));
+        registerHandler(new TrapdoorHandler(Block.BAMBOO_TRAPDOOR.namespace()));
+        registerHandler(new TrapdoorHandler(Block.BIRCH_TRAPDOOR.namespace()));
+        registerHandler(new TrapdoorHandler(Block.CHERRY_TRAPDOOR.namespace()));
+        registerHandler(new TrapdoorHandler(Block.CRIMSON_TRAPDOOR.namespace()));
+        registerHandler(new TrapdoorHandler(Block.DARK_OAK_TRAPDOOR.namespace()));
+        registerHandler(new TrapdoorHandler(Block.JUNGLE_TRAPDOOR.namespace()));
+        registerHandler(new TrapdoorHandler(Block.MANGROVE_TRAPDOOR.namespace()));
+        registerHandler(new TrapdoorHandler(Block.SPRUCE_TRAPDOOR.namespace()));
+        registerHandler(new TrapdoorHandler(Block.WARPED_TRAPDOOR.namespace()));
+        
         // Placements
+        
+        // Trapdoors
+        blockManager.registerBlockPlacementRule(new TrapdoorPlacementRule(Block.OAK_TRAPDOOR));
+        blockManager.registerBlockPlacementRule(new TrapdoorPlacementRule(Block.ACACIA_TRAPDOOR));
+        blockManager.registerBlockPlacementRule(new TrapdoorPlacementRule(Block.BAMBOO_TRAPDOOR));
+        blockManager.registerBlockPlacementRule(new TrapdoorPlacementRule(Block.BIRCH_TRAPDOOR));
+        blockManager.registerBlockPlacementRule(new TrapdoorPlacementRule(Block.CHERRY_TRAPDOOR));
+        blockManager.registerBlockPlacementRule(new TrapdoorPlacementRule(Block.CRIMSON_TRAPDOOR));
+        blockManager.registerBlockPlacementRule(new TrapdoorPlacementRule(Block.DARK_OAK_TRAPDOOR));
+        blockManager.registerBlockPlacementRule(new TrapdoorPlacementRule(Block.JUNGLE_TRAPDOOR));
+        blockManager.registerBlockPlacementRule(new TrapdoorPlacementRule(Block.MANGROVE_TRAPDOOR));
+        blockManager.registerBlockPlacementRule(new TrapdoorPlacementRule(Block.SPRUCE_TRAPDOOR));
+        blockManager.registerBlockPlacementRule(new TrapdoorPlacementRule(Block.WARPED_TRAPDOOR));
         
         // Horizontal (Furnace, Grazed Terracotta and Nest)
         //blockManager.registerBlockPlacementRule(new HorizontalPlacementRule(Block.FURNACE));
