@@ -3,10 +3,7 @@ package dev.photoncore.server.init;
 import dev.photoncore.server.blocks.handlers.CraftingTableHandler;
 import dev.photoncore.server.blocks.handlers.FurnaceHandler;
 import dev.photoncore.server.blocks.handlers.StrippedHandler;
-import dev.photoncore.server.blocks.placements.AxisPlacementRule;
-import dev.photoncore.server.blocks.placements.ConnectedPlacementRule;
-import dev.photoncore.server.blocks.placements.HorizontalPlacementRule;
-import dev.photoncore.server.blocks.placements.SlabPlacementRule;
+import dev.photoncore.server.blocks.placements.*;
 import net.minestom.server.MinecraftServer;
 import net.minestom.server.instance.block.Block;
 import net.minestom.server.instance.block.BlockHandler;
@@ -16,7 +13,7 @@ public class Blocks {
     public static void init() {
         BlockManager blockManager = MinecraftServer.getBlockManager();
         
-        // Block handlers
+        // Handlers
         registerHandler(new CraftingTableHandler());
         registerHandler(new FurnaceHandler());
         
@@ -38,97 +35,129 @@ public class Blocks {
         registerHandler(new StrippedHandler(Block.MANGROVE_WOOD.namespace()));
         registerHandler(new StrippedHandler(Block.SPRUCE_WOOD.namespace()));
         
+        // Placements
+        
         // Horizontal (Furnace, Grazed Terracotta and Nest)
-        blockManager.registerBlockPlacementRule(new HorizontalPlacementRule(Block.FURNACE));
+        //blockManager.registerBlockPlacementRule(new HorizontalPlacementRule(Block.FURNACE));
+        //blockManager.registerBlockPlacementRule(new HorizontalPlacementRule(Block.BLAST_FURNACE));
+        //blockManager.registerBlockPlacementRule(new HorizontalPlacementRule(Block.SMOKER));
+        //blockManager.registerBlockPlacementRule(new HorizontalPlacementRule(Block.BEEHIVE));
+        //blockManager.registerBlockPlacementRule(new HorizontalPlacementRule(Block.BEE_NEST));
+        //blockManager.registerBlockPlacementRule(new HorizontalPlacementRule(Block.LOOM));
+        //blockManager.registerBlockPlacementRule(new HorizontalPlacementRule(Block.CARVED_PUMPKIN));
+        //blockManager.registerBlockPlacementRule(new HorizontalPlacementRule(Block.JACK_O_LANTERN));
+        //blockManager.registerBlockPlacementRule(new HorizontalPlacementRule(Block.DAMAGED_ANVIL));
+        //blockManager.registerBlockPlacementRule(new HorizontalPlacementRule(Block.CHISELED_BOOKSHELF));
+        //blockManager.registerBlockPlacementRule(new HorizontalPlacementRule(Block.LECTERN));
+        //blockManager.registerBlockPlacementRule(new HorizontalPlacementRule(Block.VAULT));
+        //blockManager.registerBlockPlacementRule(new HorizontalPlacementRule(Block.ENDER_CHEST));
+        
+        // Gates
+        //blockManager.registerBlockPlacementRule(new WaterloggedHorizontalPlacementRule(Block.ACACIA_FENCE_GATE));
+        //blockManager.registerBlockPlacementRule(new WaterloggedHorizontalPlacementRule(Block.BAMBOO_FENCE_GATE));
+        //blockManager.registerBlockPlacementRule(new WaterloggedHorizontalPlacementRule(Block.BIRCH_FENCE_GATE));
+        //blockManager.registerBlockPlacementRule(new WaterloggedHorizontalPlacementRule(Block.CHERRY_FENCE_GATE));
+        //blockManager.registerBlockPlacementRule(new WaterloggedHorizontalPlacementRule(Block.CRIMSON_FENCE_GATE));
+        //blockManager.registerBlockPlacementRule(new WaterloggedHorizontalPlacementRule(Block.DARK_OAK_FENCE_GATE));
+        //blockManager.registerBlockPlacementRule(new WaterloggedHorizontalPlacementRule(Block.JUNGLE_FENCE_GATE));
+        //blockManager.registerBlockPlacementRule(new WaterloggedHorizontalPlacementRule(Block.MANGROVE_FENCE_GATE));
+        //blockManager.registerBlockPlacementRule(new WaterloggedHorizontalPlacementRule(Block.OAK_FENCE_GATE));
+        //blockManager.registerBlockPlacementRule(new WaterloggedHorizontalPlacementRule(Block.SPRUCE_FENCE_GATE));
+        //blockManager.registerBlockPlacementRule(new WaterloggedHorizontalPlacementRule(Block.WARPED_FENCE_GATE));
 
         // Axis (Logs, Woods, Basalt and Pillars)
-        blockManager.registerBlockPlacementRule(new AxisPlacementRule(Block.OAK_LOG));
-        blockManager.registerBlockPlacementRule(new AxisPlacementRule(Block.ACACIA_LOG));
-        blockManager.registerBlockPlacementRule(new AxisPlacementRule(Block.OAK_LOG));
-        blockManager.registerBlockPlacementRule(new AxisPlacementRule(Block.BIRCH_LOG));
-        blockManager.registerBlockPlacementRule(new AxisPlacementRule(Block.CHERRY_LOG));
-        blockManager.registerBlockPlacementRule(new AxisPlacementRule(Block.JUNGLE_LOG));
-        blockManager.registerBlockPlacementRule(new AxisPlacementRule(Block.DARK_OAK_LOG));
-        blockManager.registerBlockPlacementRule(new AxisPlacementRule(Block.MANGROVE_LOG));
-        blockManager.registerBlockPlacementRule(new AxisPlacementRule(Block.SPRUCE_LOG));
-        blockManager.registerBlockPlacementRule(new AxisPlacementRule(Block.WARPED_STEM));
-        blockManager.registerBlockPlacementRule(new AxisPlacementRule(Block.CRIMSON_STEM));
-        blockManager.registerBlockPlacementRule(new AxisPlacementRule(Block.BAMBOO_BLOCK));
-        blockManager.registerBlockPlacementRule(new AxisPlacementRule(Block.STRIPPED_ACACIA_LOG));
-        blockManager.registerBlockPlacementRule(new AxisPlacementRule(Block.STRIPPED_OAK_LOG));
-        blockManager.registerBlockPlacementRule(new AxisPlacementRule(Block.STRIPPED_BIRCH_LOG));
-        blockManager.registerBlockPlacementRule(new AxisPlacementRule(Block.STRIPPED_CHERRY_LOG));
-        blockManager.registerBlockPlacementRule(new AxisPlacementRule(Block.STRIPPED_JUNGLE_LOG));
-        blockManager.registerBlockPlacementRule(new AxisPlacementRule(Block.STRIPPED_DARK_OAK_LOG));
-        blockManager.registerBlockPlacementRule(new AxisPlacementRule(Block.STRIPPED_MANGROVE_LOG));
-        blockManager.registerBlockPlacementRule(new AxisPlacementRule(Block.STRIPPED_SPRUCE_LOG));
-        blockManager.registerBlockPlacementRule(new AxisPlacementRule(Block.STRIPPED_WARPED_STEM));
-        blockManager.registerBlockPlacementRule(new AxisPlacementRule(Block.STRIPPED_CRIMSON_STEM));
-        blockManager.registerBlockPlacementRule(new AxisPlacementRule(Block.STRIPPED_BAMBOO_BLOCK));
-        blockManager.registerBlockPlacementRule(new AxisPlacementRule(Block.ACACIA_WOOD));
-        blockManager.registerBlockPlacementRule(new AxisPlacementRule(Block.OAK_WOOD));
-        blockManager.registerBlockPlacementRule(new AxisPlacementRule(Block.BIRCH_WOOD));
-        blockManager.registerBlockPlacementRule(new AxisPlacementRule(Block.CHERRY_WOOD));
-        blockManager.registerBlockPlacementRule(new AxisPlacementRule(Block.JUNGLE_WOOD));
-        blockManager.registerBlockPlacementRule(new AxisPlacementRule(Block.DARK_OAK_WOOD));
-        blockManager.registerBlockPlacementRule(new AxisPlacementRule(Block.MANGROVE_WOOD));
-        blockManager.registerBlockPlacementRule(new AxisPlacementRule(Block.SPRUCE_WOOD));
-        blockManager.registerBlockPlacementRule(new AxisPlacementRule(Block.WARPED_HYPHAE));
-        blockManager.registerBlockPlacementRule(new AxisPlacementRule(Block.CRIMSON_HYPHAE));
-        blockManager.registerBlockPlacementRule(new AxisPlacementRule(Block.STRIPPED_ACACIA_WOOD));
-        blockManager.registerBlockPlacementRule(new AxisPlacementRule(Block.STRIPPED_OAK_WOOD));
-        blockManager.registerBlockPlacementRule(new AxisPlacementRule(Block.STRIPPED_BIRCH_WOOD));
-        blockManager.registerBlockPlacementRule(new AxisPlacementRule(Block.STRIPPED_CHERRY_WOOD));
-        blockManager.registerBlockPlacementRule(new AxisPlacementRule(Block.STRIPPED_JUNGLE_WOOD));
-        blockManager.registerBlockPlacementRule(new AxisPlacementRule(Block.STRIPPED_DARK_OAK_WOOD));
-        blockManager.registerBlockPlacementRule(new AxisPlacementRule(Block.STRIPPED_MANGROVE_WOOD));
-        blockManager.registerBlockPlacementRule(new AxisPlacementRule(Block.STRIPPED_SPRUCE_WOOD));
-        blockManager.registerBlockPlacementRule(new AxisPlacementRule(Block.STRIPPED_WARPED_HYPHAE));
-        blockManager.registerBlockPlacementRule(new AxisPlacementRule(Block.STRIPPED_CRIMSON_HYPHAE));
-        blockManager.registerBlockPlacementRule(new AxisPlacementRule(Block.POLISHED_BASALT));
-        blockManager.registerBlockPlacementRule(new AxisPlacementRule(Block.BASALT));
-        blockManager.registerBlockPlacementRule(new AxisPlacementRule(Block.PURPUR_PILLAR));
-        blockManager.registerBlockPlacementRule(new AxisPlacementRule(Block.QUARTZ_PILLAR));
+        blockManager.registerBlockPlacementRule(new FacePlacementRule(Block.OAK_LOG));
+        blockManager.registerBlockPlacementRule(new FacePlacementRule(Block.ACACIA_LOG));
+        blockManager.registerBlockPlacementRule(new FacePlacementRule(Block.OAK_LOG));
+        blockManager.registerBlockPlacementRule(new FacePlacementRule(Block.BIRCH_LOG));
+        blockManager.registerBlockPlacementRule(new FacePlacementRule(Block.CHERRY_LOG));
+        blockManager.registerBlockPlacementRule(new FacePlacementRule(Block.JUNGLE_LOG));
+        blockManager.registerBlockPlacementRule(new FacePlacementRule(Block.DARK_OAK_LOG));
+        blockManager.registerBlockPlacementRule(new FacePlacementRule(Block.MANGROVE_LOG));
+        blockManager.registerBlockPlacementRule(new FacePlacementRule(Block.SPRUCE_LOG));
+        blockManager.registerBlockPlacementRule(new FacePlacementRule(Block.WARPED_STEM));
+        blockManager.registerBlockPlacementRule(new FacePlacementRule(Block.CRIMSON_STEM));
+        blockManager.registerBlockPlacementRule(new FacePlacementRule(Block.BAMBOO_BLOCK));
+        blockManager.registerBlockPlacementRule(new FacePlacementRule(Block.STRIPPED_ACACIA_LOG));
+        blockManager.registerBlockPlacementRule(new FacePlacementRule(Block.STRIPPED_OAK_LOG));
+        blockManager.registerBlockPlacementRule(new FacePlacementRule(Block.STRIPPED_BIRCH_LOG));
+        blockManager.registerBlockPlacementRule(new FacePlacementRule(Block.STRIPPED_CHERRY_LOG));
+        blockManager.registerBlockPlacementRule(new FacePlacementRule(Block.STRIPPED_JUNGLE_LOG));
+        blockManager.registerBlockPlacementRule(new FacePlacementRule(Block.STRIPPED_DARK_OAK_LOG));
+        blockManager.registerBlockPlacementRule(new FacePlacementRule(Block.STRIPPED_MANGROVE_LOG));
+        blockManager.registerBlockPlacementRule(new FacePlacementRule(Block.STRIPPED_SPRUCE_LOG));
+        blockManager.registerBlockPlacementRule(new FacePlacementRule(Block.STRIPPED_WARPED_STEM));
+        blockManager.registerBlockPlacementRule(new FacePlacementRule(Block.STRIPPED_CRIMSON_STEM));
+        blockManager.registerBlockPlacementRule(new FacePlacementRule(Block.STRIPPED_BAMBOO_BLOCK));
+        blockManager.registerBlockPlacementRule(new FacePlacementRule(Block.ACACIA_WOOD));
+        blockManager.registerBlockPlacementRule(new FacePlacementRule(Block.OAK_WOOD));
+        blockManager.registerBlockPlacementRule(new FacePlacementRule(Block.BIRCH_WOOD));
+        blockManager.registerBlockPlacementRule(new FacePlacementRule(Block.CHERRY_WOOD));
+        blockManager.registerBlockPlacementRule(new FacePlacementRule(Block.JUNGLE_WOOD));
+        blockManager.registerBlockPlacementRule(new FacePlacementRule(Block.DARK_OAK_WOOD));
+        blockManager.registerBlockPlacementRule(new FacePlacementRule(Block.MANGROVE_WOOD));
+        blockManager.registerBlockPlacementRule(new FacePlacementRule(Block.SPRUCE_WOOD));
+        blockManager.registerBlockPlacementRule(new FacePlacementRule(Block.WARPED_HYPHAE));
+        blockManager.registerBlockPlacementRule(new FacePlacementRule(Block.CRIMSON_HYPHAE));
+        blockManager.registerBlockPlacementRule(new FacePlacementRule(Block.STRIPPED_ACACIA_WOOD));
+        blockManager.registerBlockPlacementRule(new FacePlacementRule(Block.STRIPPED_OAK_WOOD));
+        blockManager.registerBlockPlacementRule(new FacePlacementRule(Block.STRIPPED_BIRCH_WOOD));
+        blockManager.registerBlockPlacementRule(new FacePlacementRule(Block.STRIPPED_CHERRY_WOOD));
+        blockManager.registerBlockPlacementRule(new FacePlacementRule(Block.STRIPPED_JUNGLE_WOOD));
+        blockManager.registerBlockPlacementRule(new FacePlacementRule(Block.STRIPPED_DARK_OAK_WOOD));
+        blockManager.registerBlockPlacementRule(new FacePlacementRule(Block.STRIPPED_MANGROVE_WOOD));
+        blockManager.registerBlockPlacementRule(new FacePlacementRule(Block.STRIPPED_SPRUCE_WOOD));
+        blockManager.registerBlockPlacementRule(new FacePlacementRule(Block.STRIPPED_WARPED_HYPHAE));
+        blockManager.registerBlockPlacementRule(new FacePlacementRule(Block.STRIPPED_CRIMSON_HYPHAE));
+        blockManager.registerBlockPlacementRule(new FacePlacementRule(Block.POLISHED_BASALT));
+        blockManager.registerBlockPlacementRule(new FacePlacementRule(Block.BASALT));
+        blockManager.registerBlockPlacementRule(new FacePlacementRule(Block.PURPUR_PILLAR));
+        blockManager.registerBlockPlacementRule(new FacePlacementRule(Block.QUARTZ_PILLAR));
+        //blockManager.registerBlockPlacementRule(new AxisPlacementRule(Block.BONE_BLOCK));
 
-        // Connected (Fences, Walls, Bars and Panels)
-        blockManager.registerBlockPlacementRule(new ConnectedPlacementRule(Block.DEEPSLATE_BRICK_WALL));
-        blockManager.registerBlockPlacementRule(new ConnectedPlacementRule(Block.POLISHED_BLACKSTONE_BRICK_WALL));
-        blockManager.registerBlockPlacementRule(new ConnectedPlacementRule(Block.ACACIA_FENCE));
-        blockManager.registerBlockPlacementRule(new ConnectedPlacementRule(Block.SANDSTONE_WALL));
-        blockManager.registerBlockPlacementRule(new ConnectedPlacementRule(Block.RED_NETHER_BRICK_WALL));
-        blockManager.registerBlockPlacementRule(new ConnectedPlacementRule(Block.STONE_BRICK_WALL));
-        blockManager.registerBlockPlacementRule(new ConnectedPlacementRule(Block.POLISHED_DEEPSLATE_WALL));
-        blockManager.registerBlockPlacementRule(new ConnectedPlacementRule(Block.TUFF_WALL));
-        blockManager.registerBlockPlacementRule(new ConnectedPlacementRule(Block.CRIMSON_FENCE));
-        blockManager.registerBlockPlacementRule(new ConnectedPlacementRule(Block.BAMBOO_FENCE));
-        blockManager.registerBlockPlacementRule(new ConnectedPlacementRule(Block.POLISHED_BLACKSTONE_WALL));
-        blockManager.registerBlockPlacementRule(new ConnectedPlacementRule(Block.MOSSY_COBBLESTONE_WALL));
-        blockManager.registerBlockPlacementRule(new ConnectedPlacementRule(Block.DEEPSLATE_TILE_WALL));
-        blockManager.registerBlockPlacementRule(new ConnectedPlacementRule(Block.BLACKSTONE_WALL));
-        blockManager.registerBlockPlacementRule(new ConnectedPlacementRule(Block.DARK_OAK_FENCE));
-        blockManager.registerBlockPlacementRule(new ConnectedPlacementRule(Block.BIRCH_FENCE));
-        blockManager.registerBlockPlacementRule(new ConnectedPlacementRule(Block.DIORITE_WALL));
-        blockManager.registerBlockPlacementRule(new ConnectedPlacementRule(Block.PRISMARINE_WALL));
-        blockManager.registerBlockPlacementRule(new ConnectedPlacementRule(Block.OAK_FENCE));
-        blockManager.registerBlockPlacementRule(new ConnectedPlacementRule(Block.END_STONE_BRICK_WALL));
-        blockManager.registerBlockPlacementRule(new ConnectedPlacementRule(Block.NETHER_BRICK_FENCE));
-        blockManager.registerBlockPlacementRule(new ConnectedPlacementRule(Block.TUFF_BRICK_WALL));
-        blockManager.registerBlockPlacementRule(new ConnectedPlacementRule(Block.MANGROVE_FENCE));
-        blockManager.registerBlockPlacementRule(new ConnectedPlacementRule(Block.SPRUCE_FENCE));
-        blockManager.registerBlockPlacementRule(new ConnectedPlacementRule(Block.COBBLED_DEEPSLATE_WALL));
-        blockManager.registerBlockPlacementRule(new ConnectedPlacementRule(Block.BRICK_WALL));
-        blockManager.registerBlockPlacementRule(new ConnectedPlacementRule(Block.GRANITE_WALL));
-        blockManager.registerBlockPlacementRule(new ConnectedPlacementRule(Block.JUNGLE_FENCE));
-        blockManager.registerBlockPlacementRule(new ConnectedPlacementRule(Block.NETHER_BRICK_WALL));
-        blockManager.registerBlockPlacementRule(new ConnectedPlacementRule(Block.MOSSY_STONE_BRICK_WALL));
-        blockManager.registerBlockPlacementRule(new ConnectedPlacementRule(Block.COBBLESTONE_WALL));
-        blockManager.registerBlockPlacementRule(new ConnectedPlacementRule(Block.WARPED_FENCE));
-        blockManager.registerBlockPlacementRule(new ConnectedPlacementRule(Block.POLISHED_TUFF_WALL));
-        blockManager.registerBlockPlacementRule(new ConnectedPlacementRule(Block.ANDESITE_WALL));
-        blockManager.registerBlockPlacementRule(new ConnectedPlacementRule(Block.CHERRY_FENCE));
-        blockManager.registerBlockPlacementRule(new ConnectedPlacementRule(Block.RED_SANDSTONE_WALL));
-        blockManager.registerBlockPlacementRule(new ConnectedPlacementRule(Block.MUD_BRICK_WALL));
-        blockManager.registerBlockPlacementRule(new ConnectedPlacementRule(Block.IRON_BARS));
+        // Wall
+        //blockManager.registerBlockPlacementRule(new FencePlacementRule(Block.DEEPSLATE_BRICK_WALL));
+        //blockManager.registerBlockPlacementRule(new FencePlacementRule(Block.POLISHED_BLACKSTONE_BRICK_WALL));
+        //blockManager.registerBlockPlacementRule(new FencePlacementRule(Block.SANDSTONE_WALL));
+        //blockManager.registerBlockPlacementRule(new FencePlacementRule(Block.RED_NETHER_BRICK_WALL));
+        //blockManager.registerBlockPlacementRule(new FencePlacementRule(Block.STONE_BRICK_WALL));
+        //blockManager.registerBlockPlacementRule(new FencePlacementRule(Block.POLISHED_DEEPSLATE_WALL));
+        //blockManager.registerBlockPlacementRule(new FencePlacementRule(Block.TUFF_WALL));
+        //blockManager.registerBlockPlacementRule(new FencePlacementRule(Block.POLISHED_BLACKSTONE_WALL));
+        //blockManager.registerBlockPlacementRule(new FencePlacementRule(Block.MOSSY_COBBLESTONE_WALL));
+        //blockManager.registerBlockPlacementRule(new FencePlacementRule(Block.DEEPSLATE_TILE_WALL));
+        //blockManager.registerBlockPlacementRule(new FencePlacementRule(Block.BLACKSTONE_WALL));
+        //blockManager.registerBlockPlacementRule(new FencePlacementRule(Block.DIORITE_WALL));
+        //blockManager.registerBlockPlacementRule(new FencePlacementRule(Block.PRISMARINE_WALL));
+        //blockManager.registerBlockPlacementRule(new FencePlacementRule(Block.END_STONE_BRICK_WALL));
+        //blockManager.registerBlockPlacementRule(new FencePlacementRule(Block.TUFF_BRICK_WALL));
+        //blockManager.registerBlockPlacementRule(new FencePlacementRule(Block.COBBLED_DEEPSLATE_WALL));
+        //blockManager.registerBlockPlacementRule(new FencePlacementRule(Block.BRICK_WALL));
+        //blockManager.registerBlockPlacementRule(new FencePlacementRule(Block.GRANITE_WALL));
+        //blockManager.registerBlockPlacementRule(new FencePlacementRule(Block.NETHER_BRICK_WALL));
+        //blockManager.registerBlockPlacementRule(new FencePlacementRule(Block.MOSSY_STONE_BRICK_WALL));
+        //blockManager.registerBlockPlacementRule(new FencePlacementRule(Block.COBBLESTONE_WALL));
+        //blockManager.registerBlockPlacementRule(new FencePlacementRule(Block.POLISHED_TUFF_WALL));
+        //blockManager.registerBlockPlacementRule(new FencePlacementRule(Block.ANDESITE_WALL));
+        //blockManager.registerBlockPlacementRule(new FencePlacementRule(Block.RED_SANDSTONE_WALL));
+        //blockManager.registerBlockPlacementRule(new FencePlacementRule(Block.MUD_BRICK_WALL));
+        
+        // Panels
+        //blockManager.registerBlockPlacementRule(new FencePlacementRule(Block.IRON_BARS));
+        
+        // Fences
+        blockManager.registerBlockPlacementRule(new FencePlacementRule(Block.ACACIA_FENCE));
+        blockManager.registerBlockPlacementRule(new FencePlacementRule(Block.CRIMSON_FENCE));
+        blockManager.registerBlockPlacementRule(new FencePlacementRule(Block.BAMBOO_FENCE));
+        blockManager.registerBlockPlacementRule(new FencePlacementRule(Block.DARK_OAK_FENCE));
+        blockManager.registerBlockPlacementRule(new FencePlacementRule(Block.BIRCH_FENCE));
+        blockManager.registerBlockPlacementRule(new FencePlacementRule(Block.OAK_FENCE));
+        blockManager.registerBlockPlacementRule(new FencePlacementRule(Block.MANGROVE_FENCE));
+        blockManager.registerBlockPlacementRule(new FencePlacementRule(Block.SPRUCE_FENCE));
+        blockManager.registerBlockPlacementRule(new FencePlacementRule(Block.JUNGLE_FENCE));
+        blockManager.registerBlockPlacementRule(new FencePlacementRule(Block.WARPED_FENCE));
+        blockManager.registerBlockPlacementRule(new FencePlacementRule(Block.CHERRY_FENCE));
+        blockManager.registerBlockPlacementRule(new FencePlacementRule(Block.NETHER_BRICK_FENCE)); // TODO: Don't connect with others
         
         // Slabs
         blockManager.registerBlockPlacementRule(new SlabPlacementRule(Block.POLISHED_DIORITE_SLAB));

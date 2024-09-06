@@ -10,8 +10,8 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-public class ConnectedPlacementRule extends WaterloggedPlacementRule {
-    public ConnectedPlacementRule(@NotNull Block block) {
+public class FencePlacementRule extends WaterloggedPlacementRule {
+    public FencePlacementRule(@NotNull Block block) {
         super(block);
     }
 

@@ -6,8 +6,8 @@ import net.minestom.server.instance.block.rule.BlockPlacementRule;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class AxisPlacementRule extends BlockPlacementRule {
-    public AxisPlacementRule(@NotNull Block block) {
+public class FacePlacementRule extends BlockPlacementRule {
+    public FacePlacementRule(@NotNull Block block) {
         super(block);
     }
 
