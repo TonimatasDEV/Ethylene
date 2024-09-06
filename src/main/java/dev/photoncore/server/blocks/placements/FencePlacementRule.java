@@ -3,6 +3,7 @@ package dev.photoncore.server.blocks.placements;
 import net.minestom.server.coordinate.Point;
 import net.minestom.server.instance.block.Block;
 import net.minestom.server.instance.block.BlockFace;
+import net.minestom.server.instance.block.rule.BlockPlacementRule;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -10,7 +11,7 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-public class FencePlacementRule extends WaterloggedPlacementRule {
+public class FencePlacementRule extends BlockPlacementRule { // TODO: Waterlogged
     public FencePlacementRule(@NotNull Block block) {
         super(block);
     }
@@ -27,8 +28,8 @@ public class FencePlacementRule extends WaterloggedPlacementRule {
 
     @Override
     public @Nullable Block blockPlace(@NotNull PlacementState placementState) {
-        Block block = super.blockPlace(placementState);
-        return block == null ? null : block.withProperties(getProperties(placementState.instance(), placementState.placePosition()));
+        Block block = placementState.block();
+        return block.withProperties(getProperties(placementState.instance(), placementState.placePosition()));
     }
     
     public static Map<String, String> getProperties(Block.Getter instance, Point point) {

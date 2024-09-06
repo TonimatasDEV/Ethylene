@@ -4,7 +4,7 @@ import net.minestom.server.instance.block.Block;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class TrapdoorPlacementRule extends HorizontalPlacementRule {
+public class TrapdoorPlacementRule extends HorizontalPlacementRule { // TODO: Waterlogged
     public TrapdoorPlacementRule(@NotNull Block block) {
         super(block);
     }

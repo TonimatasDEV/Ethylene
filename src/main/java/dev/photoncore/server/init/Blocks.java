@@ -1,9 +1,6 @@
 package dev.photoncore.server.init;
 
-import dev.photoncore.server.blocks.handlers.CraftingTableHandler;
-import dev.photoncore.server.blocks.handlers.FurnaceHandler;
-import dev.photoncore.server.blocks.handlers.StrippedHandler;
-import dev.photoncore.server.blocks.handlers.TrapdoorHandler;
+import dev.photoncore.server.blocks.handlers.*;
 import dev.photoncore.server.blocks.placements.*;
 import net.minestom.server.MinecraftServer;
 import net.minestom.server.instance.block.Block;
@@ -37,7 +34,6 @@ public class Blocks {
         registerHandler(new StrippedHandler(Block.SPRUCE_WOOD.namespace()));
         
         registerHandler(new TrapdoorHandler(Block.OAK_TRAPDOOR.namespace()));
-        registerHandler(new TrapdoorHandler(Block.OAK_TRAPDOOR.namespace()));
         registerHandler(new TrapdoorHandler(Block.ACACIA_TRAPDOOR.namespace()));
         registerHandler(new TrapdoorHandler(Block.BAMBOO_TRAPDOOR.namespace()));
         registerHandler(new TrapdoorHandler(Block.BIRCH_TRAPDOOR.namespace()));
@@ -49,7 +45,12 @@ public class Blocks {
         registerHandler(new TrapdoorHandler(Block.SPRUCE_TRAPDOOR.namespace()));
         registerHandler(new TrapdoorHandler(Block.WARPED_TRAPDOOR.namespace()));
         
+        registerHandler(new GateHandler(Block.OAK_FENCE_GATE.namespace()));
+        
         // Placements
+        
+        // Gates
+        blockManager.registerBlockPlacementRule(new GatePlacementRule(Block.OAK_FENCE_GATE));
         
         // Trapdoors
         blockManager.registerBlockPlacementRule(new TrapdoorPlacementRule(Block.OAK_TRAPDOOR));
