@@ -22,8 +22,24 @@ public class GateHandler implements BlockHandler {
         }
         
         float yaw = interaction.getPlayer().getPosition().yaw();
-        String facing = BlockFace.fromYaw(yaw).toString().toLowerCase(Locale.ENGLISH);
+        String facing = interaction.getBlock().getProperty("facing");
         String open = interaction.getBlock().getProperty("open");
+        String playerFacing = BlockFace.fromYaw(yaw).toString().toLowerCase(Locale.ENGLISH);
+        
+        
+        if (facing.equals("south") || facing.equals("north")) {
+            if (playerFacing.equals("north")) {
+                facing = "north";
+            } else {
+                facing = "south";
+            }
+        } else {
+            if (playerFacing.equals("east")) {
+                facing = "east";
+            } else {
+                facing = "west";
+            }
+        }
         
         open = StringUtils.inverseBoolean(open);
         
