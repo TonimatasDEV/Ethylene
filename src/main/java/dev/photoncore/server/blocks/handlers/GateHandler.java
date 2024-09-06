@@ -1,6 +1,6 @@
 package dev.photoncore.server.blocks.handlers;
 
-import dev.photoncore.server.utils.StringUtils;
+import dev.photoncore.server.utils.Utils;
 import net.minestom.server.instance.block.BlockFace;
 import net.minestom.server.instance.block.BlockHandler;
 import net.minestom.server.utils.NamespaceID;
@@ -41,7 +41,7 @@ public class GateHandler implements BlockHandler {
             }
         }
         
-        open = StringUtils.inverseBoolean(open);
+        open = Utils.inverseStrBoolean(open);
         
         interaction.getInstance().setBlock(interaction.getBlockPosition(), interaction.getBlock().withProperty("open", open).withProperty("facing", facing), true);
 

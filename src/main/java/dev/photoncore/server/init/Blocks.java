@@ -59,6 +59,64 @@ public class Blocks {
         
         // Placements
         
+        // Stairs
+        blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.STONE_STAIRS));
+        blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.SMOOTH_RED_SANDSTONE_STAIRS));
+        blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.POLISHED_ANDESITE_STAIRS));
+        blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.DEEPSLATE_BRICK_STAIRS));
+        blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.SANDSTONE_STAIRS));
+        blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.ANDESITE_STAIRS));
+        blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.CRIMSON_STAIRS));
+        blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.WAXED_OXIDIZED_CUT_COPPER_STAIRS));
+        blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.END_STONE_BRICK_STAIRS));
+        blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.COBBLED_DEEPSLATE_STAIRS));
+        blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.PRISMARINE_BRICK_STAIRS));
+        blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.QUARTZ_STAIRS));
+        blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.JUNGLE_STAIRS));
+        blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.POLISHED_GRANITE_STAIRS));
+        blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.TUFF_STAIRS));
+        blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.OAK_STAIRS));
+        blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.SMOOTH_SANDSTONE_STAIRS));
+        blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.SMOOTH_QUARTZ_STAIRS));
+        blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.DARK_OAK_STAIRS));
+        blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.COBBLESTONE_STAIRS));
+        blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.MANGROVE_STAIRS));
+        blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.STONE_BRICK_STAIRS));
+        blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.WARPED_STAIRS));
+        blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.WAXED_CUT_COPPER_STAIRS));
+        blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.DIORITE_STAIRS));
+        blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.PRISMARINE_STAIRS));
+        blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.CHERRY_STAIRS));
+        blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.TUFF_BRICK_STAIRS));
+        blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.PURPUR_STAIRS));
+        blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.POLISHED_TUFF_STAIRS));
+        blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.RED_SANDSTONE_STAIRS));
+        blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.DEEPSLATE_TILE_STAIRS));
+        blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.WEATHERED_CUT_COPPER_STAIRS));
+        blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.BIRCH_STAIRS));
+        blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.NETHER_BRICK_STAIRS));
+        blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.DARK_PRISMARINE_STAIRS));
+        blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.ACACIA_STAIRS));
+        blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.GRANITE_STAIRS));
+        blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.WAXED_WEATHERED_CUT_COPPER_STAIRS));
+        blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.BLACKSTONE_STAIRS));
+        blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.RED_NETHER_BRICK_STAIRS));
+        blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.BAMBOO_STAIRS));
+        blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.BAMBOO_MOSAIC_STAIRS));
+        blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.POLISHED_BLACKSTONE_STAIRS));
+        blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.CUT_COPPER_STAIRS));
+        blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.WAXED_EXPOSED_CUT_COPPER_STAIRS));
+        blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.POLISHED_BLACKSTONE_BRICK_STAIRS));
+        blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.POLISHED_DEEPSLATE_STAIRS));
+        blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.SPRUCE_STAIRS));
+        blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.OXIDIZED_CUT_COPPER_STAIRS));
+        blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.MOSSY_COBBLESTONE_STAIRS));
+        blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.BRICK_STAIRS));
+        blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.EXPOSED_CUT_COPPER_STAIRS));
+        blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.MOSSY_STONE_BRICK_STAIRS));
+        blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.MUD_BRICK_STAIRS));
+        blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.POLISHED_DIORITE_STAIRS));
+        
         // Gates
         blockManager.registerBlockPlacementRule(new GatePlacementRule(Block.OAK_FENCE_GATE));
         blockManager.registerBlockPlacementRule(new GatePlacementRule(Block.ACACIA_FENCE_GATE));
