@@ -15,11 +15,11 @@ public class GatePlacementRule extends HorizontalPlacementRule { // TODO: Waterl
         
         if (block == null) return null;
         
-        block = block.withProperty("in_wall", inWall(placementState));
+        block = block.withProperty("in_wall", inWall(placementState.block()));
         return block;
     }
-    
-    public String inWall(PlacementState placementState) { // TODO: I need to do walls first
+
+    private static String inWall(Block block) { // TODO: I need to do walls first
         String direction = block.getProperty("facing");
         
         if (direction.equals("north") || direction.equals("south")) {

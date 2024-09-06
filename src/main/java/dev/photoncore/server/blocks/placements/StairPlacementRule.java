@@ -40,8 +40,8 @@ public class StairPlacementRule extends BlockPlacementRule {
         
         return block.withProperty("shape", getShape(placementState.instance(), block, placementState.placePosition()));
     }
-    
-    public static String getShape(Block.Getter instance, Block block, Point point) {
+
+    private static String getShape(Block.Getter instance, Block block, Point point) {
         BlockFace face = Utils.getBlockFace(block);
         Block relativeBlock = instance.getBlock(point.relative(face));
         

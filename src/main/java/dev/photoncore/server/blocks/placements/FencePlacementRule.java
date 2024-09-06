@@ -33,8 +33,8 @@ public class FencePlacementRule extends BlockPlacementRule { // TODO: Waterlogge
         Block block = placementState.block();
         return block.withProperties(getProperties(placementState.block(), placementState.instance(), placementState.placePosition()));
     }
-    
-    public static Map<String, String> getProperties(Block block, Block.Getter instance, Point point) {
+
+    private static Map<String, String> getProperties(Block block, Block.Getter instance, Point point) {
         Map<String, String> properties = new HashMap<>();
 
         for (BlockFace face : BlockFace.values()) {
