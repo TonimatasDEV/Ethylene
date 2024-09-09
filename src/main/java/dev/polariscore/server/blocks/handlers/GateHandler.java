@@ -20,13 +20,13 @@ public class GateHandler implements BlockHandler {
         if (interaction.getPlayer().isSneaking() && interaction.getPlayer().getItemInHand(interaction.getHand()).material().isBlock()) {
             return true;
         }
-        
+
         float yaw = interaction.getPlayer().getPosition().yaw();
         String facing = interaction.getBlock().getProperty("facing");
         String open = interaction.getBlock().getProperty("open");
         String playerFacing = BlockFace.fromYaw(yaw).toString().toLowerCase(Locale.ENGLISH);
-        
-        
+
+
         if (facing.equals("south") || facing.equals("north")) {
             if (playerFacing.equals("north")) {
                 facing = "north";
@@ -40,9 +40,9 @@ public class GateHandler implements BlockHandler {
                 facing = "west";
             }
         }
-        
+
         open = Utils.inverseStrBoolean(open);
-        
+
         interaction.getInstance().setBlock(interaction.getBlockPosition(), interaction.getBlock().withProperty("open", open).withProperty("facing", facing), true);
 
         return false;

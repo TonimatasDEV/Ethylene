@@ -17,36 +17,11 @@ public class ServerEula {
         this.agreed = this.readFile();
     }
 
-    private boolean readFile() {
-        try (InputStream inputstream = Files.newInputStream(this.file)) {
-            Properties properties = new Properties();
-            properties.load(inputstream);
-            return Boolean.parseBoolean(properties.getProperty("eula", "false"));
-        } catch (Exception exception) {
-            this.saveDefaults();
-            return false;
-        }
-    }
-
-    public boolean hasAgreedToEULA() {
-        return this.agreed;
-    }
-
-    private void saveDefaults() {
-        try (OutputStream outputstream = Files.newOutputStream(this.file)) {
-            Properties properties = new Properties();
-            properties.setProperty("eula", "false");
-            properties.store(outputstream, "By changing the setting below to TRUE you are indicating your agreement to our EULA (https://account.mojang.com/documents/minecraft_eula).");
-        } catch (Exception exception) {
-            System.out.println("Could not save " + this.file + ": " + exception.getMessage());
-        }
-    }
-
     @SuppressWarnings({"ResultOfMethodCallIgnored", "LoggingSimilarMessage"})
     public static boolean checkEula(Path path, boolean accepteula) throws IOException {
         File file = path.toFile();
         ServerEula eula = new ServerEula(path);
-        
+
         if (!eula.hasAgreedToEULA()) {
             int wrong = 0;
 
@@ -56,7 +31,7 @@ public class ServerEula {
                 System.out.print("Do you accept? (yes/no): ");
                 console = new Scanner(System.in);
             }
-            
+
             while (true) {
                 String answer = console != null ? console.nextLine() : "yes";
                 if (answer == null || answer.isBlank()) {
@@ -95,6 +70,31 @@ public class ServerEula {
             }
         } else {
             return true;
+        }
+    }
+
+    private boolean readFile() {
+        try (InputStream inputstream = Files.newInputStream(this.file)) {
+            Properties properties = new Properties();
+            properties.load(inputstream);
+            return Boolean.parseBoolean(properties.getProperty("eula", "false"));
+        } catch (Exception exception) {
+            this.saveDefaults();
+            return false;
+        }
+    }
+
+    public boolean hasAgreedToEULA() {
+        return this.agreed;
+    }
+
+    private void saveDefaults() {
+        try (OutputStream outputstream = Files.newOutputStream(this.file)) {
+            Properties properties = new Properties();
+            properties.setProperty("eula", "false");
+            properties.store(outputstream, "By changing the setting below to TRUE you are indicating your agreement to our EULA (https://account.mojang.com/documents/minecraft_eula).");
+        } catch (Exception exception) {
+            System.out.println("Could not save " + this.file + ": " + exception.getMessage());
         }
     }
 }

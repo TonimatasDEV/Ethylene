@@ -9,7 +9,7 @@ public class Utils {
     public static BlockFace getBlockFace(Block block) {
         return BlockFace.valueOf(block.getProperty("facing").toUpperCase(Locale.ENGLISH));
     }
-    
+
     public static String getAxis(BlockFace value) {
         return switch (value) {
             case NORTH, SOUTH -> "z";

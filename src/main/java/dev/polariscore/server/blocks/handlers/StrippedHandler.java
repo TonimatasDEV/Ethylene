@@ -9,7 +9,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class StrippedHandler implements BlockHandler {
     protected NamespaceID id;
-    
+
     public StrippedHandler(NamespaceID id) {
         this.id = id;
     }
@@ -17,15 +17,15 @@ public class StrippedHandler implements BlockHandler {
     @Override
     public boolean onInteract(@NotNull Interaction interaction) {
         Player player = interaction.getPlayer();
-        
+
         if (ItIs.anAxe(player.getItemInHand(interaction.getHand()))) {
             Block block = Block.fromNamespaceId(interaction.getBlock().namespace().toString().replaceAll(":", ":stripped_"));
-            
+
             if (block == null) return false;
 
             interaction.getInstance().setBlock(interaction.getBlockPosition(), block, true);
         }
-        
+
         return true;
     }
 

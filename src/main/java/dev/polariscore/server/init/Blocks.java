@@ -10,11 +10,11 @@ import net.minestom.server.instance.block.BlockManager;
 public class Blocks {
     public static void init() {
         BlockManager blockManager = MinecraftServer.getBlockManager();
-        
+
         // Handlers
         registerHandler(new CraftingTableHandler());
         registerHandler(new FurnaceHandler());
-        
+
         registerHandler(new StrippedHandler(Block.ACACIA_LOG.namespace()));
         registerHandler(new StrippedHandler(Block.OAK_LOG.namespace()));
         registerHandler(new StrippedHandler(Block.BIRCH_LOG.namespace()));
@@ -23,7 +23,7 @@ public class Blocks {
         registerHandler(new StrippedHandler(Block.DARK_OAK_LOG.namespace()));
         registerHandler(new StrippedHandler(Block.MANGROVE_LOG.namespace()));
         registerHandler(new StrippedHandler(Block.SPRUCE_LOG.namespace()));
-        
+
         registerHandler(new StrippedHandler(Block.ACACIA_WOOD.namespace()));
         registerHandler(new StrippedHandler(Block.OAK_WOOD.namespace()));
         registerHandler(new StrippedHandler(Block.BIRCH_WOOD.namespace()));
@@ -32,7 +32,7 @@ public class Blocks {
         registerHandler(new StrippedHandler(Block.DARK_OAK_WOOD.namespace()));
         registerHandler(new StrippedHandler(Block.MANGROVE_WOOD.namespace()));
         registerHandler(new StrippedHandler(Block.SPRUCE_WOOD.namespace()));
-        
+
         registerHandler(new TrapdoorHandler(Block.OAK_TRAPDOOR.namespace()));
         registerHandler(new TrapdoorHandler(Block.ACACIA_TRAPDOOR.namespace()));
         registerHandler(new TrapdoorHandler(Block.BAMBOO_TRAPDOOR.namespace()));
@@ -44,7 +44,7 @@ public class Blocks {
         registerHandler(new TrapdoorHandler(Block.MANGROVE_TRAPDOOR.namespace()));
         registerHandler(new TrapdoorHandler(Block.SPRUCE_TRAPDOOR.namespace()));
         registerHandler(new TrapdoorHandler(Block.WARPED_TRAPDOOR.namespace()));
-        
+
         registerHandler(new GateHandler(Block.OAK_FENCE_GATE.namespace()));
         registerHandler(new GateHandler(Block.ACACIA_FENCE_GATE.namespace()));
         registerHandler(new GateHandler(Block.BAMBOO_FENCE_GATE.namespace()));
@@ -56,9 +56,9 @@ public class Blocks {
         registerHandler(new GateHandler(Block.MANGROVE_FENCE_GATE.namespace()));
         registerHandler(new GateHandler(Block.SPRUCE_FENCE_GATE.namespace()));
         registerHandler(new GateHandler(Block.WARPED_FENCE_GATE.namespace()));
-        
+
         // Placements
-        
+
         // Stairs
         blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.STONE_STAIRS));
         blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.SMOOTH_RED_SANDSTONE_STAIRS));
@@ -116,7 +116,7 @@ public class Blocks {
         blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.MOSSY_STONE_BRICK_STAIRS));
         blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.MUD_BRICK_STAIRS));
         blockManager.registerBlockPlacementRule(new StairPlacementRule(Block.POLISHED_DIORITE_STAIRS));
-        
+
         // Gates
         blockManager.registerBlockPlacementRule(new GatePlacementRule(Block.OAK_FENCE_GATE));
         blockManager.registerBlockPlacementRule(new GatePlacementRule(Block.ACACIA_FENCE_GATE));
@@ -129,7 +129,7 @@ public class Blocks {
         blockManager.registerBlockPlacementRule(new GatePlacementRule(Block.MANGROVE_FENCE_GATE));
         blockManager.registerBlockPlacementRule(new GatePlacementRule(Block.SPRUCE_FENCE_GATE));
         blockManager.registerBlockPlacementRule(new GatePlacementRule(Block.WARPED_FENCE_GATE));
-        
+
         // Trapdoors
         blockManager.registerBlockPlacementRule(new TrapdoorPlacementRule(Block.OAK_TRAPDOOR));
         blockManager.registerBlockPlacementRule(new TrapdoorPlacementRule(Block.ACACIA_TRAPDOOR));
@@ -142,7 +142,7 @@ public class Blocks {
         blockManager.registerBlockPlacementRule(new TrapdoorPlacementRule(Block.MANGROVE_TRAPDOOR));
         blockManager.registerBlockPlacementRule(new TrapdoorPlacementRule(Block.SPRUCE_TRAPDOOR));
         blockManager.registerBlockPlacementRule(new TrapdoorPlacementRule(Block.WARPED_TRAPDOOR));
-        
+
         // Horizontal (Furnace, Grazed Terracotta and Nest)
         //blockManager.registerBlockPlacementRule(new HorizontalPlacementRule(Block.FURNACE));
         //blockManager.registerBlockPlacementRule(new HorizontalPlacementRule(Block.BLAST_FURNACE));
@@ -157,7 +157,7 @@ public class Blocks {
         //blockManager.registerBlockPlacementRule(new HorizontalPlacementRule(Block.LECTERN));
         //blockManager.registerBlockPlacementRule(new HorizontalPlacementRule(Block.VAULT));
         //blockManager.registerBlockPlacementRule(new HorizontalPlacementRule(Block.ENDER_CHEST));
-        
+
         // Gates
         //blockManager.registerBlockPlacementRule(new WaterloggedHorizontalPlacementRule(Block.ACACIA_FENCE_GATE));
         //blockManager.registerBlockPlacementRule(new WaterloggedHorizontalPlacementRule(Block.BAMBOO_FENCE_GATE));
@@ -247,10 +247,10 @@ public class Blocks {
         //blockManager.registerBlockPlacementRule(new FencePlacementRule(Block.ANDESITE_WALL));
         //blockManager.registerBlockPlacementRule(new FencePlacementRule(Block.RED_SANDSTONE_WALL));
         //blockManager.registerBlockPlacementRule(new FencePlacementRule(Block.MUD_BRICK_WALL));
-        
+
         // Panels
         //blockManager.registerBlockPlacementRule(new FencePlacementRule(Block.IRON_BARS));
-        
+
         // Fences
         blockManager.registerBlockPlacementRule(new FencePlacementRule(Block.ACACIA_FENCE));
         blockManager.registerBlockPlacementRule(new FencePlacementRule(Block.CRIMSON_FENCE));
@@ -264,7 +264,7 @@ public class Blocks {
         blockManager.registerBlockPlacementRule(new FencePlacementRule(Block.WARPED_FENCE));
         blockManager.registerBlockPlacementRule(new FencePlacementRule(Block.CHERRY_FENCE));
         blockManager.registerBlockPlacementRule(new FencePlacementRule(Block.NETHER_BRICK_FENCE)); // TODO: Don't connect with others
-        
+
         // Slabs
         blockManager.registerBlockPlacementRule(new SlabPlacementRule(Block.POLISHED_DIORITE_SLAB));
         blockManager.registerBlockPlacementRule(new SlabPlacementRule(Block.EXPOSED_CUT_COPPER_SLAB));

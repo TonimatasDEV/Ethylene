@@ -10,7 +10,7 @@ public class LibraryManager {
         List<String> resources = new ArrayList<>();
 
         InputStream inputStream = Launcher.class.getResourceAsStream("/" + type.toString().toLowerCase() + ".txt");
-        
+
         if (inputStream == null) {
             System.out.println("Error on get " + type.toString().toLowerCase() + ".");
             return resources;

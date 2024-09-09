@@ -11,6 +11,7 @@ public class SaveAllCommand extends Command {
         super("save-all");
         setDefaultExecutor(this::execute);
     }
+
     private void execute(CommandSender sender, CommandContext arguments) {
         MinecraftServer.getInstanceManager().getInstances().forEach(Instance::saveChunksToStorage);
         sender.sendMessage("All words saved");

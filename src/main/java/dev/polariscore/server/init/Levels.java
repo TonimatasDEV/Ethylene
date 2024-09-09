@@ -10,10 +10,10 @@ import net.minestom.server.world.DimensionType;
 
 public class Levels {
     public static InstanceContainer OVERWORLD;
-    
+
     public static void init() {
         InstanceManager instanceManager = MinecraftServer.getInstanceManager();
-        
+
         // Overworld
         OVERWORLD = instanceManager.createInstanceContainer(DimensionType.OVERWORLD);
 

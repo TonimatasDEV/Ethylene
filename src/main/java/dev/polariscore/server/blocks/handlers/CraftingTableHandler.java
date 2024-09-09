@@ -14,7 +14,7 @@ public class CraftingTableHandler implements BlockHandler {
         interaction.getPlayer().openInventory(new Inventory(InventoryType.CRAFTING, Component.translatable("container.crafting")));
         return false;
     }
-    
+
     @Override
     public @NotNull NamespaceID getNamespaceId() {
         return Block.CRAFTING_TABLE.namespace();

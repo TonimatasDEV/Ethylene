@@ -11,19 +11,19 @@ public class TrapdoorHandler implements BlockHandler {
     public TrapdoorHandler(NamespaceID id) {
         this.id = id;
     }
-    
+
     @Override
     public boolean onInteract(@NotNull Interaction interaction) {
         if (interaction.getPlayer().isSneaking() && interaction.getPlayer().getItemInHand(interaction.getHand()).material().isBlock()) {
             return true;
         }
-        
+
         String open = interaction.getBlock().getProperty("open");
-        
+
         open = Utils.inverseStrBoolean(open);
-        
+
         interaction.getInstance().setBlock(interaction.getBlockPosition(), interaction.getBlock().withProperty("open", open), true);
-        
+
         return false;
     }
 

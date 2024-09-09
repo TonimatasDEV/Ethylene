@@ -24,41 +24,41 @@ public class PlayerEvents {
                 event.getPlayer().kick("The server is stopping.");
                 return;
             }
-            
+
             Player player = event.getPlayer();
             event.setSpawningInstance(Levels.OVERWORLD);
             player.setRespawnPoint(new Pos(0, 42, 0));
             player.setSkin(PlayerSkin.fromUsername(player.getUsername()));
             player.setGameMode(GameMode.CREATIVE);
         });
-        
+
         handler.addListener(AsyncPlayerPreLoginEvent.class, event -> Audiences.all().sendMessage(Component.text(event.getUsername() + " joined the game").style(Style.style(NamedTextColor.YELLOW))));
         handler.addListener(PlayerDisconnectEvent.class, event -> Audiences.all().sendMessage(Component.text(event.getPlayer().getUsername() + " left the game").style(Style.style(NamedTextColor.YELLOW))));
-        
+
         handler.addListener(PlayerBlockInteractEvent.class, event -> {
             Block blockInHand = event.getPlayer().getItemInHand(event.getHand()).material().block();
-            
+
             // Slab start
             if (blockInHand != null) {
                 Point relativePoint = event.getBlockPosition().relative(event.getBlockFace());
-                
+
                 if (event.getCursorPosition().y() == 0.5) {
                     relativePoint = event.getBlockPosition();
                     event.setCancelled(true);
                 }
-                
+
                 Block relativeBlock = event.getInstance().getBlock(relativePoint);
-                
+
                 Tag tag = MinecraftServer.getTagManager().getTag(Tag.BasicType.BLOCKS, "minecraft:slabs");
                 assert tag != null;
-                
+
                 if ((tag.contains(blockInHand.namespace()) && tag.contains(relativeBlock.namespace())) && relativeBlock.compare(blockInHand) && blockInHand.properties().get("type").equals("bottom")) {
                     event.getInstance().setBlock(relativePoint, relativeBlock.withProperty("type", "double"), true);
                 }
             }
             // Slab end
         });
-        
+
         handler.addListener(PlayerBlockPlaceEvent.class, event -> {
             Block block = event.getBlock();
             BlockHandler blockHandler = MinecraftServer.getBlockManager().getHandler(block.namespace().toString());
@@ -75,7 +75,7 @@ public class PlayerEvents {
                 }
             }
             // Slab end
-            
+
             if (blockHandler != null) {
                 event.setBlock(block.withHandler(blockHandler));
             }

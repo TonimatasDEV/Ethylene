@@ -16,7 +16,7 @@ public class LibraryInstaller {
     private static final String filledChar = "=";
     private static final String voidChar = " ";
     private static final int numberChars = 20;
-    
+
     public static void init() {
         int max = LibraryManager.getResources(LibraryManager.Type.LIBRARIES).size();
         int part = max / numberChars;
@@ -27,26 +27,27 @@ public class LibraryInstaller {
         boolean update = true;
         for (String repository : LibraryManager.getResources(LibraryManager.Type.REPOSITORIES)) {
             for (String library : LibraryManager.getResources(LibraryManager.Type.LIBRARIES)) {
-                
+
                 String[] strings = library.split(":");
                 String jarPath = strings[0].replace(".", "/") + "/" + strings[1] + "/" + strings[2];
                 String jarName = strings[1] + "-" + strings[2] + ".jar";
 
                 if (update) {
                     int filledParts = now / part;
-                    
+
                     String result;
                     if (numberChars >= filledParts) {
                         result = "Downloading libraries: [" + filledChar.repeat(filledParts) + voidChar.repeat(numberChars - filledParts) + "]";
                     } else {
                         result = "Downloading libraries: [" + filledChar.repeat(numberChars) + "]";
                     }
-                    
+
                     printReplace(result);
                     update = false;
                 }
-                
-                if (!new File("libraries/" + jarPath + "/" + jarName).exists()) downloadLibrary(repository + jarPath, jarPath, jarName);
+
+                if (!new File("libraries/" + jarPath + "/" + jarName).exists())
+                    downloadLibrary(repository + jarPath, jarPath, jarName);
 
                 JarFile jarFile = null;
                 try {
@@ -55,7 +56,7 @@ public class LibraryInstaller {
                 }
 
                 if (jarFiles.contains(jarFile) || jarFile == null) continue;
-                
+
                 jarFiles.add(jarFile);
                 try {
                     Agent.appendJarFile(jarFile);
@@ -63,7 +64,7 @@ public class LibraryInstaller {
                     System.out.println("Error on load libraries.");
                     throw new RuntimeException(e);
                 }
-                
+
                 update = true;
                 now++;
             }

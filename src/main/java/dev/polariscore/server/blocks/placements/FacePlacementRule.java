@@ -14,9 +14,9 @@ public class FacePlacementRule extends BlockPlacementRule {
     @Override
     public @Nullable Block blockPlace(@NotNull BlockPlacementRule.PlacementState placementState) {
         BlockFace blockFace = placementState.blockFace();
-        
+
         String axis = "y";
-        
+
         if (blockFace == BlockFace.NORTH || blockFace == BlockFace.SOUTH) {
             axis = "z";
         }
@@ -24,7 +24,7 @@ public class FacePlacementRule extends BlockPlacementRule {
         if (blockFace == BlockFace.WEST || blockFace == BlockFace.EAST) {
             axis = "x";
         }
-        
+
         return placementState.block().withProperty("axis", axis);
     }
 }

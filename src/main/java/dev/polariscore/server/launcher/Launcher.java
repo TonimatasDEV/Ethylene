@@ -11,7 +11,8 @@ public class Launcher {
         LibraryInstaller.init();
 
         try {
-            if (!ServerEula.checkEula(Path.of("eula.txt"), Arrays.stream(args).toList().contains("-accepteula"))) return;
+            if (!ServerEula.checkEula(Path.of("eula.txt"), Arrays.stream(args).toList().contains("-accepteula")))
+                return;
         } catch (IOException e) {
             System.out.println("Error on load eula.");
             throw new RuntimeException(e);

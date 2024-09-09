@@ -14,16 +14,16 @@ public class ItemEvents {
         handler.addListener(ItemDropEvent.class, event -> {
             ItemEntity itemEntity = new ItemEntity(event.getItemStack());
             Pos playePos = event.getPlayer().getPosition();
-            double eyeHeight = event.getPlayer().getEyeHeight() - (double)0.3F;
+            double eyeHeight = event.getPlayer().getEyeHeight() - (double) 0.3F;
             Vec velocity = event.getPlayer().getPosition().direction().mul(6);
-            
+
             itemEntity.setPickupDelay(40, TimeUnit.SERVER_TICK);
             itemEntity.setMergeable(true);
             itemEntity.setMergeRange(1);
             itemEntity.setVelocity(velocity);
             itemEntity.setInstance(event.getPlayer().getInstance(), new Pos(playePos.x(), eyeHeight + playePos.y(), playePos.z()));
         });
-        
+
         handler.addListener(PickupItemEvent.class, event -> {
             if (event.getEntity() instanceof Player player) {
                 player.getInventory().addItemStack(event.getItemStack());

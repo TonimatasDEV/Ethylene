@@ -13,7 +13,7 @@ public class FurnaceHandler implements BlockHandler {
         interaction.getPlayer().openInventory(new FurnaceInventory(Component.translatable("container.furnace")));
         return false;
     }
-    
+
     @Override
     public @NotNull NamespaceID getNamespaceId() {
         return Block.FURNACE.namespace();

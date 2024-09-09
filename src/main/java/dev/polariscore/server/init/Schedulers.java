@@ -10,10 +10,10 @@ import org.slf4j.LoggerFactory;
 
 public class Schedulers {
     private static final Logger LOGGER = LoggerFactory.getLogger(Schedulers.class);
-    
+
     public static void init() {
         SchedulerManager schedulerManager = MinecraftServer.getSchedulerManager();
-        
+
         schedulerManager.buildShutdownTask(() -> {
             for (Player player : MinecraftServer.getConnectionManager().getOnlinePlayers()) {
                 player.kick("Server closed.");
@@ -22,7 +22,7 @@ public class Schedulers {
             LOGGER.info("Saving worlds...");
             MinecraftServer.getInstanceManager().getInstances().forEach(Instance::saveChunksToStorage);
         });
-        
+
         schedulerManager.buildTask(() -> {
             LOGGER.info("Saving all instances...");
             MinecraftServer.getInstanceManager().getInstances().forEach(Instance::saveChunksToStorage);

@@ -14,7 +14,7 @@ public class SlabPlacementRule extends BlockPlacementRule { // TODO: Waterlogged
     public @Nullable Block blockPlace(@NotNull PlacementState placementState) {
         Block newBlock = placementState.block();
         double blockCursorY = placementState.cursorPosition() != null ? placementState.cursorPosition().y() : 0;
-        
+
         if (blockCursorY == 0.5) {
             return null;
         }
@@ -24,7 +24,7 @@ public class SlabPlacementRule extends BlockPlacementRule { // TODO: Waterlogged
         } else {
             newBlock = newBlock.withProperty("type", "bottom");
         }
-        
+
         return newBlock;
     }
 }
