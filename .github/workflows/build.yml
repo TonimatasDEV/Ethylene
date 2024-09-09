@@ -1,0 +1,46 @@
+name: Server builds
+
+on:
+  push:
+    branches: [master]
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup java
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      - name: Setup gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: Build with Gradle
+        run: ./gradlew jar
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: PolarisCore
+          path: build/libs/PolarisCore**.jar
+
+      - name: Create Release
+        if: ${{ format('refs/heads/{0}', github.event.repository.default_branch) == github.ref }}
+        run: |
+          jar_file=$(basename build/libs/PolarisCore**.jar)
+          file_name_no_ext="${jar_file%.jar}"
+          formatted_name=$(echo "$file_name_no_ext" | sed 's/-/ /g')
+          
+          gh release create "commit-${commit_count}" build/libs/PolarisCore**.jar \
+              --repo="$GITHUB_REPOSITORY" \
+              --title="${formatted_name} commit-${commit_count}" \
+              --generate-notes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

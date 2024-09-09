@@ -1,13 +1,16 @@
-import dev.photoncore.tasks.Utils
-import dev.photoncore.tasks.CreateTextFile
+import dev.polariscore.tasks.Utils
+import dev.polariscore.tasks.CreateTextFile
 
 plugins {
     id("java")
+    id("com.gorylenko.gradle-git-properties") version("2.4.1")
 }
 
-group = "dev.photoncore.photoncore"
-version = "1.0.0"
-base.archivesName.set("PhotonCore")
+def gitCommitCount = 'git rev-list --count HEAD'.execute().text.trim()
+
+group = "dev.polariscore"
+version = "1.21-" + gitCommitCount
+base.archivesName.set("PolarisCore")
 
 repositories {
     mavenCentral()
@@ -34,10 +37,10 @@ tasks.jar {
 
     manifest {
         attributes(
-                "Launcher-Agent-Class": "dev.photoncore.server.launcher.Agent",
-                "Agent-Class": "dev.photoncore.server.launcher.Agent",
-                "Premain-Class": "dev.photoncore.server.launcher.Agent",
-                "Main-Class": "dev.photoncore.server.launcher.Launcher",
+                "Launcher-Agent-Class": "dev.polariscore.server.launcher.Agent",
+                "Agent-Class": "dev.polariscore.server.launcher.Agent",
+                "Premain-Class": "dev.polariscore.server.launcher.Agent",
+                "Main-Class": "dev.polariscore.server.launcher.Launcher",
                 "Multi-Release": true
         )
     }

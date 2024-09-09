@@ -1,9 +1,9 @@
 <configuration>
-    <conversionRule conversionWord="photon" class="dev.photoncore.server.utils.PhotonHighlightingConverter"/>
+    <conversionRule conversionWord="polaris" class="dev.polariscore.server.utils.PolarisHighlightingConverter"/>
     
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>[%gray(%d{HH:mm:ss})] [%photon(%level)] [%cyan(%logger{36})] %msg%n</pattern>
+            <pattern>[%gray(%d{HH:mm:ss})] [%polaris(%level)] [%cyan(%logger{36})] %msg%n</pattern>
         </encoder>
     </appender>
 
