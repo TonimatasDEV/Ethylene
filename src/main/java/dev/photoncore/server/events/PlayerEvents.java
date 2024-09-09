@@ -1,6 +1,5 @@
 package dev.photoncore.server.events;
 
-import dev.photoncore.server.Main;
 import dev.photoncore.server.init.Levels;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
@@ -21,7 +20,7 @@ import net.minestom.server.instance.block.BlockHandler;
 public class PlayerEvents {
     public static void init(GlobalEventHandler handler) {
         handler.addListener(AsyncPlayerConfigurationEvent.class, event -> {
-            if (Main.stopping) {
+            if (MinecraftServer.isStopping()) {
                 event.getPlayer().kick("The server is stopping.");
                 return;
             }
@@ -39,6 +38,7 @@ public class PlayerEvents {
         handler.addListener(PlayerBlockInteractEvent.class, event -> {
             Block blockInHand = event.getPlayer().getItemInHand(event.getHand()).material().block();
             
+            // Slab start
             if (blockInHand != null) {
                 Point relativePoint = event.getBlockPosition().relative(event.getBlockFace());
                 
@@ -56,13 +56,14 @@ public class PlayerEvents {
                     event.getInstance().setBlock(relativePoint, relativeBlock.withProperty("type", "double"), true);
                 }
             }
+            // Slab end
         });
         
         handler.addListener(PlayerBlockPlaceEvent.class, event -> {
             Block block = event.getBlock();
             BlockHandler blockHandler = MinecraftServer.getBlockManager().getHandler(block.namespace().toString());
 
-            
+            // Slab start
             if (event.getCursorPosition().y() == 0.5) {
                 Point clickedPoint = event.getBlockPosition().relative(event.getBlockFace().getOppositeFace());
                 Block clickedBlock = event.getInstance().getBlock(clickedPoint);
@@ -73,8 +74,7 @@ public class PlayerEvents {
                     return;
                 }
             }
-            
-            
+            // Slab end
             
             if (blockHandler != null) {
                 event.setBlock(block.withHandler(blockHandler));

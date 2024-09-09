@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 
 public class Main {
     public static Logger LOGGER = LoggerFactory.getLogger(Main.class);
-    public static boolean stopping = false;
+    private static Thread consoleThread;
 
     public static void main(String[] args) {
         long startTime = System.currentTimeMillis();
@@ -24,10 +24,13 @@ public class Main {
 
         server.start("0.0.0.0", 25565);
         LOGGER.info("Done ({}s)! For help, type \"help\"",  String.format("%.2f", (double) (System.currentTimeMillis() - startTime) / 1000));
+        
+        consoleThread = new ConsoleThread();
+        consoleThread.start();
     }
     
     public static void stop() {
+        consoleThread.interrupt();
         MinecraftServer.stopCleanly();
-        System.exit(0);
     }
 }

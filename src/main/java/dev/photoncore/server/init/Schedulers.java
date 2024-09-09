@@ -1,6 +1,5 @@
 package dev.photoncore.server.init;
 
-import dev.photoncore.server.Main;
 import net.minestom.server.MinecraftServer;
 import net.minestom.server.entity.Player;
 import net.minestom.server.instance.Instance;
@@ -16,8 +15,6 @@ public class Schedulers {
         SchedulerManager schedulerManager = MinecraftServer.getSchedulerManager();
         
         schedulerManager.buildShutdownTask(() -> {
-            Main.stopping = true;
-
             for (Player player : MinecraftServer.getConnectionManager().getOnlinePlayers()) {
                 player.kick("Server closed.");
             }
