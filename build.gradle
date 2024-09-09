@@ -16,7 +16,6 @@ repositories {
 dependencies {
     implementation("net.minestom:minestom-snapshots:b0bad7e180")
     implementation("ch.qos.logback:logback-classic:1.5.7")
-    implementation("org.fusesource.jansi:jansi:2.4.1")
 }
 
 tasks.register("createLibrariesFile", CreateTextFile) {

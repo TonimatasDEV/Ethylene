@@ -42,7 +42,7 @@ public class LibraryInstaller {
                         result = "Downloading libraries: [" + filledChar.repeat(numberChars) + "]";
                     }
                     
-                    printReplace(result, library);
+                    printReplace(result);
                     update = false;
                 }
                 
@@ -73,8 +73,8 @@ public class LibraryInstaller {
         System.out.println("All libraries downloaded/loaded successfully in " + (System.currentTimeMillis() - time) + "ms");
     }
 
-    public static void printReplace(String newMessage, String otherMessage) {
-        System.out.print("\r" + newMessage + " " + otherMessage);
+    public static void printReplace(String newMessage) {
+        System.out.print("\r" + newMessage);
     }
 
     private static void downloadLibrary(String url, String jarDirectory, String jarName) {
