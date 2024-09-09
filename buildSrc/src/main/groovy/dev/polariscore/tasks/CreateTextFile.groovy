@@ -15,7 +15,7 @@ abstract class CreateTextFile extends DefaultTask {
 
     CreateTextFile() {
         outputs.upToDateWhen { false }
-        outputFile.convention(project.layout.buildDirectory.file(fileName))
+        outputFile.convention(project.layout.buildDirectory.dir("generated").get().file(fileName))
     }
 
 
