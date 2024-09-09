@@ -2,7 +2,7 @@ name: Server builds
 
 on:
   push:
-    branches: [master]
+    branches: [main]
 permissions:
   contents: write
 
