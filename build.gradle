@@ -3,13 +3,10 @@ import dev.polariscore.tasks.CreateTextFile
 
 plugins {
     id("java")
-    id("com.gorylenko.gradle-git-properties") version("2.4.1")
 }
 
-def gitCommitCount = 'git rev-list --count HEAD'.execute().text.trim()
-
 group = "dev.polariscore"
-version = "1.21-" + gitCommitCount
+version = "1.21-" + (System.getenv("COMMIT_COUNT") == null ? "dev" : System.getenv("COMMIT_COUNT"))
 base.archivesName.set("PolarisCore")
 
 repositories {
