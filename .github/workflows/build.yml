@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Get version
         run: |
-          COMMIT_COUNT=$(curl -s "https://api.github.com/repos/polaris-core/PolarisCore/commits?sha=main" | grep -o '"sha":' | wc -l)
+          COMMIT_COUNT=$(curl -s "https://api.github.com/repos/polaris-core/PolarisCore/commits?sha=main" | jq '. | length')
           echo "COMMIT_COUNT=$COMMIT_COUNT" >> $GITHUB_ENV
 
       - name: Checkout repository
