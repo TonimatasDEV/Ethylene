@@ -12,8 +12,7 @@ jobs:
     steps:
       - name: Get version
         run: |
-          COMMIT_COUNT=$(curl -s "https://api.github.com/repos/polaris-core/PolarisCore/commits?sha=main" | jq '. | length')
-          echo "COMMIT_COUNT=$COMMIT_COUNT" >> $GITHUB_ENV
+          echo "VERSION=${{ github.run_number }}" >> $GITHUB_ENV
 
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -43,7 +42,7 @@ jobs:
           file_name_no_ext="${jar_file%.jar}"
           formatted_name=$(echo "$file_name_no_ext" | sed 's/-/ /g')
           
-          gh release create "${{ env.COMMIT_COUNT }}" build/libs/PolarisCore**.jar \
+          gh release create "${{ github.run_number }}" build/libs/PolarisCore**.jar \
               --repo="$GITHUB_REPOSITORY" \
               --title="${formatted_name}" \
               --generate-notes
