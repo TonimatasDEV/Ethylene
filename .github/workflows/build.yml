@@ -38,9 +38,10 @@ jobs:
           file_name_no_ext="${jar_file%.jar}"
           formatted_name=$(echo "$file_name_no_ext" | sed 's/-/ /g')
           
-          gh release create "commit-${commit_count}" build/libs/PolarisCore**.jar \
+          commit_count=$(git rev-list --count HEAD)
+          gh release create "${commit_count}" build/libs/PolarisCore**.jar \
               --repo="$GITHUB_REPOSITORY" \
-              --title="${formatted_name} commit-${commit_count}" \
+              --title="${formatted_name}" \
               --generate-notes
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
