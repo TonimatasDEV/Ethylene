@@ -27,7 +27,6 @@ public class LibraryInstaller {
         boolean update = true;
         for (String repository : LibraryManager.getResources(LibraryManager.Type.REPOSITORIES)) {
             for (String library : LibraryManager.getResources(LibraryManager.Type.LIBRARIES)) {
-
                 String[] strings = library.split(":");
                 String jarPath = strings[0].replace(".", "/") + "/" + strings[1] + "/" + strings[2];
                 String jarName = strings[1] + "-" + strings[2] + ".jar";
@@ -37,9 +36,9 @@ public class LibraryInstaller {
 
                     String result;
                     if (numberChars >= filledParts) {
-                        result = "Downloading libraries: [" + filledChar.repeat(filledParts) + voidChar.repeat(numberChars - filledParts) + "]";
+                        result = "Downloading libraries: [" + filledChar.repeat(filledParts) + voidChar.repeat(numberChars - filledParts) + "] " + getPercentage(now, max);
                     } else {
-                        result = "Downloading libraries: [" + filledChar.repeat(numberChars) + "]";
+                        result = "Downloading libraries: [" + filledChar.repeat(numberChars) + "] 100%";
                     }
 
                     printReplace(result);
@@ -97,5 +96,9 @@ public class LibraryInstaller {
         } catch (IOException | URISyntaxException e) {
             System.out.println("Error on download library: " + jarName);
         }
+    }
+    
+    private static String getPercentage(int now, int max) {
+        return (int) ((double) now / max * 100) + "%";
     }
 }

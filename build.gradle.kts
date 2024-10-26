@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "dev.polariscore"
-version = "1.21-" + (System.getenv("VERSION") ?: "dev")
+version = "1.21.2-" + (System.getenv("VERSION") ?: "dev")
 base.archivesName.set("PolarisCore")
 
 repositories {
