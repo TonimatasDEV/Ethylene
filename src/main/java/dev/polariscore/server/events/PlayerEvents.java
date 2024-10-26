@@ -32,7 +32,7 @@ public class PlayerEvents {
             player.setGameMode(GameMode.CREATIVE);
         });
 
-        handler.addListener(AsyncPlayerPreLoginEvent.class, event -> Audiences.all().sendMessage(Component.text(event.getUsername() + " joined the game").style(Style.style(NamedTextColor.YELLOW))));
+        handler.addListener(AsyncPlayerPreLoginEvent.class, event -> Audiences.all().sendMessage(Component.text(event.getGameProfile().name() + " joined the game").style(Style.style(NamedTextColor.YELLOW))));
         handler.addListener(PlayerDisconnectEvent.class, event -> Audiences.all().sendMessage(Component.text(event.getPlayer().getUsername() + " left the game").style(Style.style(NamedTextColor.YELLOW))));
 
         handler.addListener(PlayerBlockInteractEvent.class, event -> {
