@@ -14,7 +14,7 @@ repositories {
 }
 
 dependencies {
-    implementation("net.minestom:minestom-snapshots:1_21_2-59a97ca99e")
+    implementation("net.minestom:minestom-snapshots:1_21_2-888f9896cc")
     implementation("ch.qos.logback:logback-classic:1.5.7")
 }
 
