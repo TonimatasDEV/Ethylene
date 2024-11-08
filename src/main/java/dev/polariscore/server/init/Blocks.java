@@ -144,6 +144,22 @@ public class Blocks {
         blockManager.registerBlockPlacementRule(new TrapdoorPlacementRule(Block.WARPED_TRAPDOOR));
 
         // Horizontal (Furnace, Grazed Terracotta and Nest)
+        blockManager.registerBlockPlacementRule(new HorizontalPlacementRule(Block.GRAY_GLAZED_TERRACOTTA));
+        blockManager.registerBlockPlacementRule(new HorizontalPlacementRule(Block.GREEN_GLAZED_TERRACOTTA));
+        blockManager.registerBlockPlacementRule(new HorizontalPlacementRule(Block.BLACK_GLAZED_TERRACOTTA));
+        blockManager.registerBlockPlacementRule(new HorizontalPlacementRule(Block.BLUE_GLAZED_TERRACOTTA));
+        blockManager.registerBlockPlacementRule(new HorizontalPlacementRule(Block.BROWN_GLAZED_TERRACOTTA));
+        blockManager.registerBlockPlacementRule(new HorizontalPlacementRule(Block.CYAN_GLAZED_TERRACOTTA));
+        blockManager.registerBlockPlacementRule(new HorizontalPlacementRule(Block.LIGHT_BLUE_GLAZED_TERRACOTTA));
+        blockManager.registerBlockPlacementRule(new HorizontalPlacementRule(Block.LIGHT_GRAY_GLAZED_TERRACOTTA));
+        blockManager.registerBlockPlacementRule(new HorizontalPlacementRule(Block.LIME_GLAZED_TERRACOTTA));
+        blockManager.registerBlockPlacementRule(new HorizontalPlacementRule(Block.MAGENTA_GLAZED_TERRACOTTA));
+        blockManager.registerBlockPlacementRule(new HorizontalPlacementRule(Block.ORANGE_GLAZED_TERRACOTTA));
+        blockManager.registerBlockPlacementRule(new HorizontalPlacementRule(Block.PINK_GLAZED_TERRACOTTA));
+        blockManager.registerBlockPlacementRule(new HorizontalPlacementRule(Block.PURPLE_GLAZED_TERRACOTTA));
+        blockManager.registerBlockPlacementRule(new HorizontalPlacementRule(Block.RED_GLAZED_TERRACOTTA));
+        blockManager.registerBlockPlacementRule(new HorizontalPlacementRule(Block.WHITE_GLAZED_TERRACOTTA));
+        blockManager.registerBlockPlacementRule(new HorizontalPlacementRule(Block.YELLOW_GLAZED_TERRACOTTA));
         //blockManager.registerBlockPlacementRule(new HorizontalPlacementRule(Block.FURNACE));
         //blockManager.registerBlockPlacementRule(new HorizontalPlacementRule(Block.BLAST_FURNACE));
         //blockManager.registerBlockPlacementRule(new HorizontalPlacementRule(Block.SMOKER));
