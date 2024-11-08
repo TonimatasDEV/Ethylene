@@ -4,32 +4,7 @@ import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.pattern.color.ForegroundCompositeConverterBase;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class PolarisColorConverter extends ForegroundCompositeConverterBase<ILoggingEvent> {
-    private static final Map<String, String> colorMap = new HashMap<>();
-
-    static {
-        colorMap.put("0", "\u001B[30m");
-        colorMap.put("1", "\u001B[34m");
-        colorMap.put("2", "\u001B[32m");
-        colorMap.put("3", "\u001B[36m");
-        colorMap.put("4", "\u001B[31m");
-        colorMap.put("5", "\u001B[35m");
-        colorMap.put("6", "\u001B[33m");
-        colorMap.put("7", "\u001B[37m");
-        colorMap.put("8", "\u001B[90m");
-        colorMap.put("9", "\u001B[94m");
-        colorMap.put("a", "\u001B[92m");
-        colorMap.put("b", "\u001B[96m");
-        colorMap.put("c", "\u001B[91m");
-        colorMap.put("d", "\u001B[95m");
-        colorMap.put("e", "\u001B[93m");
-        colorMap.put("f", "\u001B[97m");
-        colorMap.put("r", "\u001B[0m");
-    }
-    
     @Override
     protected String getForegroundColorCode(ILoggingEvent event) {
         Level level = event.getLevel();
@@ -43,12 +18,22 @@ public class PolarisColorConverter extends ForegroundCompositeConverterBase<ILog
 
     @Override
     protected String transform(ILoggingEvent event, String in) {
-        String output = in;
-        
-        for (Map.Entry<String, String> entry : colorMap.entrySet()) {
-            output = output.replaceAll("§" + entry.getKey(), entry.getValue());
-        }
-
-        return output + "\u001B[0m";
+        return (in + "§r").replaceAll("§0", "\u001B[30m")
+                .replaceAll("§1", "\u001B[34m")
+                .replaceAll("§2", "\u001B[32m")
+                .replaceAll("§3", "\u001B[36m")
+                .replaceAll("§4", "\u001B[31m")
+                .replaceAll("§5", "\u001B[35m")
+                .replaceAll("§6", "\u001B[33m")
+                .replaceAll("§7", "\u001B[37m")
+                .replaceAll("§8", "\u001B[90m")
+                .replaceAll("§9", "\u001B[94m")
+                .replaceAll("§a", "\u001B[92m")
+                .replaceAll("§b", "\u001B[96m")
+                .replaceAll("§c", "\u001B[91m")
+                .replaceAll("§d", "\u001B[95m")
+                .replaceAll("§e", "\u001B[93m")
+                .replaceAll("§f", "\u001B[97m")
+                .replaceAll("§r", "\u001B[0m");
     }
 }
