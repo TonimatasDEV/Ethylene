@@ -9,7 +9,7 @@ public class ConsoleThread extends Thread {
     public void run() {
         while (MinecraftServer.isStarted()) {
             Scanner scanner = new Scanner(System.in);
-            MinecraftServer.getCommandManager().executeServerCommand(scanner.nextLine());
+            MinecraftServer.getCommandManager().execute(MinecraftServer.getCommandManager().getConsoleSender(), scanner.nextLine());
         }
     }
 }

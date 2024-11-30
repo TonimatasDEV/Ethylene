@@ -8,10 +8,12 @@ import java.util.Arrays;
 
 public class Launcher {
     public static void main(String[] args) {
-        LibraryInstaller.init();
+        if (!Arrays.asList(args).contains("-nolibraries")) {
+            LibraryInstaller.init();
+        }
 
         try {
-            if (!ServerEula.checkEula(Path.of("eula.txt"), Arrays.stream(args).toList().contains("-accepteula")))
+            if (!ServerEula.checkEula(Path.of("eula.txt"), Arrays.asList(args).contains("-accepteula")))
                 return;
         } catch (IOException e) {
             System.out.println("Error on load eula.");
