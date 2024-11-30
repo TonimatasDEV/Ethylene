@@ -1,8 +1,11 @@
 import dev.polariscore.tasks.CreateTextFile
 import dev.polariscore.tasks.Utils
+import kotlin.io.path.createDirectory
+import kotlin.io.path.exists
 
 plugins {
     java
+    application
 }
 
 val minecraftVersion: String by extra
@@ -12,6 +15,7 @@ val logbackVersion: String by extra
 group = "dev.polariscore"
 version = minecraftVersion + "-" + (System.getenv("VERSION") ?: "dev")
 base.archivesName.set("PolarisCore")
+sourceSets.main.get().resources.srcDirs("src/main/resources")
 
 repositories {
     mavenCentral()
@@ -38,15 +42,27 @@ tasks.jar {
 
     manifest {
         attributes(
-                "Launcher-Agent-Class" to "dev.polariscore.server.launcher.Agent",
-                "Agent-Class" to "dev.polariscore.server.launcher.Agent",
-                "Premain-Class" to "dev.polariscore.server.launcher.Agent",
-                "Main-Class" to "dev.polariscore.server.launcher.Launcher",
-                "Multi-Release" to true
+            "Launcher-Agent-Class" to "dev.polariscore.server.launcher.Agent",
+            "Agent-Class" to "dev.polariscore.server.launcher.Agent",
+            "Premain-Class" to "dev.polariscore.server.launcher.Agent",
+            "Main-Class" to "dev.polariscore.server.launcher.Launcher",
+            "Multi-Release" to true
         )
     }
 
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 
+application {
+    mainClass = "dev.polariscore.server.launcher.Launcher"
+}
 
+tasks.named<JavaExec>("run") {
+    val path = rootDir.toPath().resolve("run")
+    
+    args = listOf("-nolibraries", "-accepteula")
+    workingDir = path.toFile()
+    standardInput = System.`in`
+
+    if (!path.exists()) path.createDirectory()
+}
