@@ -5,8 +5,12 @@ plugins {
     java
 }
 
+val minecraftVersion: String by extra
+val minestomVersion: String by extra
+val logbackVersion: String by extra
+
 group = "dev.polariscore"
-version = "1.21.2-" + (System.getenv("VERSION") ?: "dev")
+version = minecraftVersion + "-" + (System.getenv("VERSION") ?: "dev")
 base.archivesName.set("PolarisCore")
 
 repositories {
@@ -14,8 +18,8 @@ repositories {
 }
 
 dependencies {
-    implementation("net.minestom:minestom-snapshots:1_21_2-888f9896cc")
-    implementation("ch.qos.logback:logback-classic:1.5.7")
+    implementation("net.minestom:minestom-snapshots:$minestomVersion")
+    implementation("ch.qos.logback:logback-classic:$logbackVersion")
 }
 
 tasks.register<CreateTextFile>("createLibrariesFile") {
