@@ -24,6 +24,7 @@ repositories {
 dependencies {
     implementation("net.minestom:minestom-snapshots:$minestomVersion")
     implementation("ch.qos.logback:logback-classic:$logbackVersion")
+    implementation("de.articdive:jnoise-pipeline:4.1.0")
 }
 
 tasks.register<CreateTextFile>("createLibrariesFile") {
@@ -34,6 +35,10 @@ tasks.register<CreateTextFile>("createLibrariesFile") {
 tasks.register<CreateTextFile>("createRepositoriesFile") {
     fileName = "repositories.txt"
     content = Utils.getRepositories(repositories)
+}
+
+tasks.processResources {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 
 tasks.jar {
