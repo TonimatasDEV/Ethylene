@@ -28,12 +28,16 @@ dependencies {
 
 tasks.register<CreateTextFile>("createLibrariesFile") {
     fileName = "libraries.txt"
-    content = Utils.getDependencies(configurations.implementation.get().copy())
+    content = Utils.getDependencies(configurations.runtimeClasspath.get())
 }
 
 tasks.register<CreateTextFile>("createRepositoriesFile") {
     fileName = "repositories.txt"
     content = Utils.getRepositories(repositories)
+}
+
+tasks.processResources {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 
 tasks.jar {
@@ -49,8 +53,6 @@ tasks.jar {
             "Multi-Release" to true
         )
     }
-
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 
 application {
