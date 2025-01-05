@@ -4,4 +4,4 @@ pluginManagement {
     }
 }
 
-rootProject.name = "PolarisCore"
+rootProject.name = "Ethylene"
