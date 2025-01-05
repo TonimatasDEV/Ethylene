@@ -1,5 +1,5 @@
-import dev.polariscore.tasks.CreateTextFile
-import dev.polariscore.tasks.Utils
+import net.ethylene.tasks.CreateTextFile
+import net.ethylene.tasks.Utils
 import kotlin.io.path.createDirectory
 import kotlin.io.path.exists
 
@@ -12,9 +12,9 @@ val minecraftVersion: String by extra
 val minestomVersion: String by extra
 val logbackVersion: String by extra
 
-group = "dev.polariscore"
+group = "net.etyhelene"
 version = minecraftVersion + "-" + (System.getenv("VERSION") ?: "dev")
-base.archivesName.set("PolarisCore")
+base.archivesName.set("Ethylene")
 sourceSets.main.get().resources.srcDirs("src/main/resources")
 
 repositories {
@@ -46,17 +46,17 @@ tasks.jar {
 
     manifest {
         attributes(
-            "Launcher-Agent-Class" to "dev.polariscore.server.launcher.Agent",
-            "Agent-Class" to "dev.polariscore.server.launcher.Agent",
-            "Premain-Class" to "dev.polariscore.server.launcher.Agent",
-            "Main-Class" to "dev.polariscore.server.launcher.Launcher",
+            "Launcher-Agent-Class" to "net.ethylene.server.launcher.Agent",
+            "Agent-Class" to "net.ethylene.server.launcher.Agent",
+            "Premain-Class" to "net.ethylene.server.launcher.Agent",
+            "Main-Class" to "net.ethylene.server.launcher.Launcher",
             "Multi-Release" to true
         )
     }
 }
 
 application {
-    mainClass = "dev.polariscore.server.launcher.Launcher"
+    mainClass = "net.ethylene.server.launcher.Launcher"
 }
 
 tasks.named<JavaExec>("run") {
