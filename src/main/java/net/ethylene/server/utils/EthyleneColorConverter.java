@@ -18,6 +18,10 @@ public class EthyleneColorConverter extends ForegroundCompositeConverterBase<ILo
 
     @Override
     protected String transform(ILoggingEvent event, String in) {
+        if (in.equals("INFO") || in.equals("WARN") || in.equals("ERROR")) {
+            return super.transform(event, in);
+        }
+
         return (in + "§r").replaceAll("§0", "\u001B[30m")
                 .replaceAll("§1", "\u001B[34m")
                 .replaceAll("§2", "\u001B[32m")

@@ -120,7 +120,11 @@ public class LibraryInstaller {
             Stream<Path> paths = Files.walk(Path.of("libraries"));
 
             for (Path path : paths.toList()) {
-                if (!installedPaths.contains(path)) {
+                if (!installedPaths.contains(path) && Files.exists(path)) {
+                    if (Files.isDirectory(path)) {
+                        deleteDirectoryIfExists(path);
+                    }
+
                     Files.deleteIfExists(path);
                 }
             }
@@ -128,6 +132,20 @@ public class LibraryInstaller {
             paths.close();
         } catch (IOException e) {
             System.out.println("Error deleting a file not installed by the core in the libraries folder. " + e.getMessage());
+        }
+    }
+
+    private static void deleteDirectoryIfExists(Path path) {
+        File[] files = path.toFile().listFiles();
+
+        if (files == null) return;
+
+        for (File file : files) {
+            if (file.isDirectory()) {
+                deleteDirectoryIfExists(file.toPath());
+            } else {
+                file.delete();
+            }
         }
     }
 
