@@ -277,7 +277,7 @@ public class Blocks {
         register(new FencePlacementRule(Block.JUNGLE_FENCE));
         register(new FencePlacementRule(Block.WARPED_FENCE));
         register(new FencePlacementRule(Block.CHERRY_FENCE));
-        register(new FencePlacementRule(Block.NETHER_BRICK_FENCE)); // TODO: Unfinished
+        register(new FencePlacementRule(Block.NETHER_BRICK_FENCE));
 
         // Slabs
         register(new SlabPlacementRule(Block.POLISHED_DIORITE_SLAB));

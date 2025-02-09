@@ -1,8 +1,7 @@
 package net.ethylene.server.blocks.placements;
 
-import net.minestom.server.MinecraftServer;
+import net.ethylene.server.tags.Tags;
 import net.minestom.server.coordinate.Point;
-import net.minestom.server.gamedata.tags.Tag;
 import net.minestom.server.instance.block.Block;
 import net.minestom.server.instance.block.BlockFace;
 import net.minestom.server.instance.block.rule.BlockPlacementRule;
@@ -37,14 +36,32 @@ public class FencePlacementRule extends BlockPlacementRule { // TODO: Waterlogge
             }
 
             Block blockWithDirection = block.withProperty(face.name().toLowerCase(Locale.ENGLISH), "true");
-            Tag tag1 = MinecraftServer.getTagManager().getTag(Tag.BasicType.BLOCKS, "minecraft:wooden_fences");
-            Tag tag2 = MinecraftServer.getTagManager().getTag(Tag.BasicType.BLOCKS, "minecraft:fence_gates");
 
-            if (faceBlock.registry().collisionShape().isOccluded(blockWithDirection.registry().collisionShape(), face) ||
-                    (tag1 != null && tag1.contains(faceBlock.namespace())) || (tag2 != null && tag2.contains(faceBlock.namespace()))) {
+            if (faceBlock.registry().collisionShape().isOccluded(blockWithDirection.registry().collisionShape(), face)
+                    || Tags.WOODEN_FENCES.get().contains(faceBlock.namespace())) {
                 properties.put(face.name().toLowerCase(Locale.ENGLISH), "true");
             } else {
                 properties.put(face.name().toLowerCase(Locale.ENGLISH), "false");
+            }
+
+            if (Tags.FENCE_GATES.get().contains(faceBlock.namespace())) {
+                BlockFace gateFace = BlockFace.valueOf(faceBlock.getProperty("facing").toUpperCase(Locale.ENGLISH));
+
+                boolean connect = switch (face) {
+                    case NORTH, SOUTH -> !(gateFace == BlockFace.NORTH || gateFace == BlockFace.SOUTH);
+                    case WEST, EAST -> !(gateFace == BlockFace.WEST || gateFace == BlockFace.EAST);
+                    default -> false;
+                };
+
+                properties.put(face.name().toLowerCase(Locale.ENGLISH), String.valueOf(connect));
+            }
+
+            if (block.namespace().equals(Block.NETHER_BRICK_FENCE.namespace())) {
+                if (Tags.WOODEN_FENCES.get().contains(faceBlock.namespace())) {
+                    properties.put(face.name().toLowerCase(Locale.ENGLISH), "false");
+                } else if (faceBlock.namespace().equals(Block.NETHER_BRICK_FENCE.namespace())) {
+                    properties.put(face.name().toLowerCase(Locale.ENGLISH), "true");
+                }
             }
         }
 
