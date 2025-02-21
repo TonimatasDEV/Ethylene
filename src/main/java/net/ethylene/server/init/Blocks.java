@@ -233,6 +233,7 @@ public class Blocks {
         register(new FacePlacementRule(Block.BASALT));
         register(new FacePlacementRule(Block.PURPUR_PILLAR));
         register(new FacePlacementRule(Block.QUARTZ_PILLAR));
+        register(new FacePlacementRule(Block.CHAIN));
         //blockManager.registerBlockPlacementRule(new AxisPlacementRule(Block.BONE_BLOCK));
 
         // Wall
