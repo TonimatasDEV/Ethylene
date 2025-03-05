@@ -31,9 +31,12 @@ public class LibraryInstaller {
         boolean update = true;
         for (String repository : LibraryManager.getResources(LibraryManager.Type.REPOSITORIES)) {
             for (String library : LibraryManager.getResources(LibraryManager.Type.LIBRARIES)) {
-                String[] strings = library.split(":");
-                String jarPath = strings[0].replace(".", "/") + "/" + strings[1] + "/" + strings[2];
-                String jarName = strings[1] + "-" + strings[2] + ".jar";
+                String[] libraryString = library.split("\\|");
+                String[] libraryInfo = libraryString[0].split(":");
+                String libraryHash = libraryString[1];
+
+                String jarPath = libraryInfo[0].replace(".", "/") + "/" + libraryInfo[1] + "/" + libraryInfo[2];
+                String jarName = libraryInfo[1] + "-" + libraryInfo[2] + ".jar";
 
                 if (update) {
                     int filledParts = now / part;
@@ -52,7 +55,18 @@ public class LibraryInstaller {
                 Path path = Path.of("libraries/" + jarPath + "/" + jarName);
                 installedPaths.addAll(addPreviousFolders(path));
 
-                if (!Files.exists(path)) downloadLibrary(repository + jarPath, jarPath, jarName);
+                File libraryFile = path.toFile();
+                boolean installed = false;
+                
+                if (libraryFile.exists()) {
+                    if (LibraryManager.checkHash(libraryFile, libraryHash)) {
+                        installed = true;
+                    } else {
+                        libraryFile.delete();
+                    }
+                }
+                
+                if (!installed) downloadLibrary(repository + jarPath, jarPath, jarName, libraryHash);
 
                 JarFile jarFile = null;
 
@@ -87,15 +101,17 @@ public class LibraryInstaller {
         System.out.print("\r" + newMessage);
     }
 
-    private static void downloadLibrary(String url, String jarDirectory, String jarName) {
+    private static void downloadLibrary(String url, String jarDirectory, String jarName, String hash) {
         new File("libraries/" + jarDirectory).mkdirs();
+        
+        File jarFile = new File("libraries/" + jarDirectory + "/" + jarName);
 
         try {
             HttpURLConnection connection = (HttpURLConnection) new URI(url + "/" + jarName).toURL().openConnection();
 
             if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
                 InputStream inputStream = connection.getInputStream();
-                FileOutputStream outputStream = new FileOutputStream("libraries/" + jarDirectory + "/" + jarName);
+                FileOutputStream outputStream = new FileOutputStream(jarFile);
                 byte[] buffer = new byte[1024];
                 int bytesRead;
 
@@ -105,9 +121,13 @@ public class LibraryInstaller {
 
                 outputStream.close();
                 inputStream.close();
+                
+                if (!LibraryManager.checkHash(jarFile, hash)) {
+                    throw new RuntimeException("Error on download library: " + jarName);
+                }
             }
         } catch (IOException | URISyntaxException e) {
-            System.out.println("Error on download library: " + jarName);
+            throw new RuntimeException("Error on download library: " + jarName, e);
         }
     }
 
