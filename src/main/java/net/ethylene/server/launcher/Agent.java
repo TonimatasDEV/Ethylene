@@ -1,6 +1,5 @@
 package net.ethylene.server.launcher;
 
-import java.io.IOException;
 import java.lang.instrument.Instrumentation;
 import java.util.jar.JarFile;
 
@@ -15,7 +14,7 @@ public class Agent {
         Agent.instrumentation = instrumentation;
     }
 
-    public static void appendJarFile(JarFile file) throws IOException {
+    public static void appendJarFile(JarFile file) {
         if (instrumentation != null) {
             instrumentation.appendToSystemClassLoaderSearch(file);
         }
