@@ -1,5 +1,6 @@
 package net.ethylene.server.utils;
 
+import net.minestom.server.entity.Player;
 import net.minestom.server.instance.block.Block;
 import net.minestom.server.instance.block.BlockFace;
 
@@ -34,5 +35,9 @@ public class Utils {
         } else {
             return "true";
         }
+    }
+    
+    public static boolean hasItemInHands(Player player) {
+        return !player.getItemInMainHand().isAir() || !player.getItemInOffHand().isAir();
     }
 }
