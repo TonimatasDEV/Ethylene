@@ -1,151 +1,74 @@
 package net.ethylene.server.launcher;
 
+import net.ethylene.server.launcher.resources.Library;
+import net.ethylene.server.launcher.resources.Resources;
+
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.jar.JarFile;
 import java.util.stream.Stream;
 
-@SuppressWarnings("ResultOfMethodCallIgnored")
 public class LibraryInstaller {
     private static final String filledChar = "=";
     private static final String voidChar = " ";
     private static final int numberChars = 20;
 
     public static void init() {
-        int max = LibraryManager.getResources(LibraryManager.Type.LIBRARIES).size();
+        int max = Resources.getLibraries().size();
         int part = max / numberChars;
         long time = System.currentTimeMillis();
-        List<JarFile> jarFiles = new ArrayList<>();
-        List<Path> installedPaths = new ArrayList<>();
 
         int now = 0;
-        boolean update = true;
-        for (String repository : LibraryManager.getResources(LibraryManager.Type.REPOSITORIES)) {
-            for (String library : LibraryManager.getResources(LibraryManager.Type.LIBRARIES)) {
-                String[] libraryString = library.split("\\|");
-                String[] libraryInfo = libraryString[0].split(":");
-                String libraryHash = libraryString[1];
+        for (String repository : Resources.getRepositories()) {
+            for (Library library : Resources.getLibraries()) {
+                int filledParts = now / part;
 
-                String jarPath = libraryInfo[0].replace(".", "/") + "/" + libraryInfo[1] + "/" + libraryInfo[2];
-                String jarName = libraryInfo[1] + "-" + libraryInfo[2] + ".jar";
-
-                if (update) {
-                    int filledParts = now / part;
-
-                    String result;
-                    if (numberChars >= filledParts) {
-                        result = "Downloading libraries: [" + filledChar.repeat(filledParts) + voidChar.repeat(numberChars - filledParts) + "] " + getPercentage(now, max);
-                    } else {
-                        result = "Downloading libraries: [" + filledChar.repeat(numberChars) + "] 100%";
-                    }
-
-                    printReplace(result);
-                    update = false;
+                String result;
+                if (numberChars >= filledParts) {
+                    result = "Downloading libraries: [" + filledChar.repeat(filledParts) + voidChar.repeat(numberChars - filledParts) + "] " + getPercentage(now, max);
+                } else {
+                    result = "Downloading libraries: [" + filledChar.repeat(numberChars) + "] 100%";
                 }
 
-                Path path = Path.of("libraries/" + jarPath + "/" + jarName);
-                installedPaths.addAll(addPreviousFolders(path));
+                System.out.print("\r" + result);
 
-                File libraryFile = path.toFile();
-                boolean installed = false;
-                
-                if (libraryFile.exists()) {
-                    if (LibraryManager.checkHash(libraryFile, libraryHash)) {
-                        installed = true;
-                    } else {
-                        libraryFile.delete();
-                    }
-                }
-                
-                if (!installed) downloadLibrary(repository + jarPath, jarPath, jarName, libraryHash);
-
-                JarFile jarFile = null;
-
-                try {
-                    jarFile = new JarFile(path.toFile());
-                } catch (IOException ignored) {
+                if (!library.isInstalled()) {
+                    library.download(repository);
                 }
 
-                if (jarFiles.contains(jarFile) || jarFile == null) continue;
+                Agent.appendJarFile(library.getJarFile());
 
-                jarFiles.add(jarFile);
-                try {
-                    Agent.appendJarFile(jarFile);
-                } catch (IOException e) {
-                    System.out.println("Error on load libraries.");
-                    throw new RuntimeException(e);
-                }
-
-                update = true;
                 now++;
             }
         }
 
-
         System.out.println();
         System.out.println("All libraries downloaded/loaded successfully in " + (System.currentTimeMillis() - time) + "ms");
 
-        deleteOtherFiles(installedPaths);
-    }
-
-    public static void printReplace(String newMessage) {
-        System.out.print("\r" + newMessage);
-    }
-
-    private static void downloadLibrary(String url, String jarDirectory, String jarName, String hash) {
-        new File("libraries/" + jarDirectory).mkdirs();
-        
-        File jarFile = new File("libraries/" + jarDirectory + "/" + jarName);
-
-        try {
-            HttpURLConnection connection = (HttpURLConnection) new URI(url + "/" + jarName).toURL().openConnection();
-
-            if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                InputStream inputStream = connection.getInputStream();
-                FileOutputStream outputStream = new FileOutputStream(jarFile);
-                byte[] buffer = new byte[1024];
-                int bytesRead;
-
-                while ((bytesRead = inputStream.read(buffer)) != -1) {
-                    outputStream.write(buffer, 0, bytesRead);
-                }
-
-                outputStream.close();
-                inputStream.close();
-                
-                if (!LibraryManager.checkHash(jarFile, hash)) {
-                    throw new RuntimeException("Error on download library: " + jarName);
-                }
-            }
-        } catch (IOException | URISyntaxException e) {
-            throw new RuntimeException("Error on download library: " + jarName, e);
-        }
+        deleteOtherFiles();
     }
 
     private static String getPercentage(int now, int max) {
         return (int) ((double) now / max * 100) + "%";
     }
 
-    private static void deleteOtherFiles(List<Path> installedPaths) {
+    private static void deleteOtherFiles() {
+        List<Path> libraries = Resources.getLibraries().stream().map(Library::getPath).toList();
+
         try {
             Stream<Path> paths = Files.walk(Path.of("libraries"));
 
             for (Path path : paths.toList()) {
-                if (!installedPaths.contains(path) && Files.exists(path)) {
-                    if (Files.isDirectory(path)) {
-                        deleteDirectoryIfExists(path);
-                    }
+                if (!Files.exists(path)) return;
 
-                    Files.deleteIfExists(path);
+                if (libraries.stream().noneMatch(path1 -> path1.startsWith(path))) {
+                    if (Files.isDirectory(path)) {
+                        deleteDirectory(path);
+                    } else {
+                        Files.delete(path);
+                    }
                 }
             }
 
@@ -155,30 +78,19 @@ public class LibraryInstaller {
         }
     }
 
-    private static void deleteDirectoryIfExists(Path path) {
-        File[] files = path.toFile().listFiles();
+    private static void deleteDirectory(Path folder) throws IOException {
+        File[] files = folder.toFile().listFiles();
 
         if (files == null) return;
 
         for (File file : files) {
             if (file.isDirectory()) {
-                deleteDirectoryIfExists(file.toPath());
+                deleteDirectory(file.toPath());
             } else {
-                file.delete();
+                Files.delete(file.toPath());
             }
         }
-    }
 
-    private static List<Path> addPreviousFolders(Path path) {
-        List<Path> paths = new ArrayList<>();
-        Path previous = path.getParent();
-
-        if (previous != null) {
-            paths.addAll(addPreviousFolders(previous));
-        }
-
-        paths.add(path);
-
-        return paths;
+        Files.delete(folder);
     }
 }
