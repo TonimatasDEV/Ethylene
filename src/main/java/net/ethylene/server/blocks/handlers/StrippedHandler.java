@@ -1,6 +1,6 @@
 package net.ethylene.server.blocks.handlers;
 
-import net.ethylene.server.utils.ItIs;
+import net.ethylene.server.tags.Tags;
 import net.minestom.server.entity.Player;
 import net.minestom.server.instance.block.Block;
 import net.minestom.server.instance.block.BlockHandler;
@@ -17,8 +17,8 @@ public class StrippedHandler implements BlockHandler {
     @Override
     public boolean onInteract(@NotNull Interaction interaction) {
         Player player = interaction.getPlayer();
-
-        if (ItIs.anAxe(player.getItemInHand(interaction.getHand()))) {
+       
+        if (Tags.AXES.contains(player.getItemInHand(interaction.getHand()))) {
             Block block = Block.fromNamespaceId(interaction.getBlock().namespace().toString().replaceAll(":", ":stripped_"));
 
             if (block == null) return false;
