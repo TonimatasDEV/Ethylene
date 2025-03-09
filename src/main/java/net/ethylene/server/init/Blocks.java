@@ -1,6 +1,10 @@
 package net.ethylene.server.init;
 
 import net.ethylene.server.blocks.handlers.*;
+import net.ethylene.server.blocks.handlers.BlastFurnaceHandler;
+import net.ethylene.server.blocks.handlers.CraftingTableHandler;
+import net.ethylene.server.blocks.handlers.FurnaceHandler;
+import net.ethylene.server.blocks.handlers.SmokerHandler;
 import net.ethylene.server.blocks.placements.*;
 import net.minestom.server.MinecraftServer;
 import net.minestom.server.instance.block.Block;
@@ -12,6 +16,8 @@ public class Blocks {
         // Handlers
         register(new CraftingTableHandler());
         register(new FurnaceHandler());
+        register(new BlastFurnaceHandler());
+        register(new SmokerHandler());
 
         register(new StrippedHandler(Block.ACACIA_LOG.namespace()));
         register(new StrippedHandler(Block.OAK_LOG.namespace()));
@@ -158,9 +164,9 @@ public class Blocks {
         register(new HorizontalPlacementRule(Block.RED_GLAZED_TERRACOTTA));
         register(new HorizontalPlacementRule(Block.WHITE_GLAZED_TERRACOTTA));
         register(new HorizontalPlacementRule(Block.YELLOW_GLAZED_TERRACOTTA));
-        //blockManager.registerBlockPlacementRule(new HorizontalPlacementRule(Block.FURNACE));
-        //blockManager.registerBlockPlacementRule(new HorizontalPlacementRule(Block.BLAST_FURNACE));
-        //blockManager.registerBlockPlacementRule(new HorizontalPlacementRule(Block.SMOKER));
+        register(new HorizontalPlacementRule(Block.FURNACE));
+        register(new HorizontalPlacementRule(Block.BLAST_FURNACE));
+        register(new HorizontalPlacementRule(Block.SMOKER));
         //blockManager.registerBlockPlacementRule(new HorizontalPlacementRule(Block.BEEHIVE));
         //blockManager.registerBlockPlacementRule(new HorizontalPlacementRule(Block.BEE_NEST));
         //blockManager.registerBlockPlacementRule(new HorizontalPlacementRule(Block.LOOM));
