@@ -38,13 +38,13 @@ public class GatePlacementRule extends BlockPlacementRule { // TODO: Waterlogged
         assert tag != null;
 
         if (direction.equals("north") || direction.equals("south")) {
-            if (tag.contains(instance.getBlock(point.relative(BlockFace.EAST)).namespace()) ||
-                    tag.contains(instance.getBlock(point.relative(BlockFace.WEST)).namespace())) {
+            if (tag.contains(instance.getBlock(point.relative(BlockFace.EAST)).key()) ||
+                    tag.contains(instance.getBlock(point.relative(BlockFace.WEST)).key())) {
                 return "true";
             }
         } else if (direction.equals("east") || direction.equals("west")) {
-            if (tag.contains(instance.getBlock(point.relative(BlockFace.NORTH)).namespace()) ||
-                    tag.contains(instance.getBlock(point.relative(BlockFace.SOUTH)).namespace())) {
+            if (tag.contains(instance.getBlock(point.relative(BlockFace.NORTH)).key()) ||
+                    tag.contains(instance.getBlock(point.relative(BlockFace.SOUTH)).key())) {
                 return "true";
             }
         }

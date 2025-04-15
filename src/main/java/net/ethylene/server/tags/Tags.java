@@ -23,6 +23,6 @@ public enum Tags {
     }
     
     public boolean contains(ItemStack itemStack) {
-        return get().contains(itemStack.material().namespace());
+        return get().contains(itemStack.material().key());
     }
 }

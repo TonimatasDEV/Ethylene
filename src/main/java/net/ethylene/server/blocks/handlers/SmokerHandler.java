@@ -1,11 +1,11 @@
 package net.ethylene.server.blocks.handlers;
 
 import net.ethylene.server.utils.Utils;
+import net.kyori.adventure.key.Key;
 import net.kyori.adventure.text.Component;
 import net.minestom.server.instance.block.Block;
 import net.minestom.server.instance.block.BlockHandler;
 import net.minestom.server.inventory.type.FurnaceInventory;
-import net.minestom.server.utils.NamespaceID;
 import org.jetbrains.annotations.NotNull;
 
 public class SmokerHandler implements BlockHandler {
@@ -20,7 +20,7 @@ public class SmokerHandler implements BlockHandler {
     }
 
     @Override
-    public @NotNull NamespaceID getNamespaceId() {
-        return Block.SMOKER.namespace();
+    public @NotNull Key getKey() {
+        return Block.SMOKER.key();
     }
 }

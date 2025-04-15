@@ -58,7 +58,7 @@ public class StairPlacementRule extends BlockPlacementRule {
     private static boolean isStair(Block block) {
         Tag tag = MinecraftServer.getTagManager().getTag(Tag.BasicType.BLOCKS, "minecraft:stairs");
         assert tag != null;
-        return tag.contains(block.namespace());
+        return tag.contains(block.key());
     }
 
     @Override
