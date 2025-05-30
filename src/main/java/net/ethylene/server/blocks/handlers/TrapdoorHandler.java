@@ -1,14 +1,14 @@
 package net.ethylene.server.blocks.handlers;
 
 import net.ethylene.server.utils.Utils;
+import net.kyori.adventure.key.Key;
 import net.minestom.server.instance.block.BlockHandler;
-import net.minestom.server.utils.NamespaceID;
 import org.jetbrains.annotations.NotNull;
 
 public class TrapdoorHandler implements BlockHandler {
-    protected NamespaceID id;
+    protected Key id;
 
-    public TrapdoorHandler(NamespaceID id) {
+    public TrapdoorHandler(Key id) {
         this.id = id;
     }
 
@@ -28,7 +28,7 @@ public class TrapdoorHandler implements BlockHandler {
     }
 
     @Override
-    public @NotNull NamespaceID getNamespaceId() {
+    public @NotNull Key getKey() {
         return id;
     }
 }

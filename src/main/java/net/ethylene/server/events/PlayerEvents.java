@@ -52,7 +52,7 @@ public class PlayerEvents {
                 Tag tag = MinecraftServer.getTagManager().getTag(Tag.BasicType.BLOCKS, "minecraft:slabs");
                 assert tag != null;
 
-                if ((tag.contains(blockInHand.namespace()) && tag.contains(relativeBlock.namespace())) && relativeBlock.compare(blockInHand) && blockInHand.properties().get("type").equals("bottom")) {
+                if ((tag.contains(blockInHand.key()) && tag.contains(relativeBlock.key())) && relativeBlock.compare(blockInHand) && blockInHand.properties().get("type").equals("bottom")) {
                     event.getInstance().setBlock(relativePoint, relativeBlock.withProperty("type", "double"), true);
                 }
             }
@@ -61,7 +61,7 @@ public class PlayerEvents {
 
         handler.addListener(PlayerBlockPlaceEvent.class, event -> {
             Block block = event.getBlock();
-            BlockHandler blockHandler = MinecraftServer.getBlockManager().getHandler(block.namespace().toString());
+            BlockHandler blockHandler = MinecraftServer.getBlockManager().getHandler(block.key().toString());
 
             // Slab start
             if (event.getCursorPosition().y() == 0.5) {
