@@ -35,16 +35,16 @@ jobs:
           name: Ethylene
           path: build/libs/Ethylene**.jar
 
-      - name: Create Release
-        if: ${{ format('refs/heads/{0}', github.event.repository.default_branch) == github.ref }}
-        run: |
-          jar_file=$(basename build/libs/Ethylene**.jar)
-          file_name_no_ext="${jar_file%.jar}"
-          formatted_name=$(echo "$file_name_no_ext" | sed 's/-/ /g')
-          
-          gh release create "${{ github.run_number }}" build/libs/Ethylene**.jar \
-              --repo="$GITHUB_REPOSITORY" \
-              --title="${formatted_name}" \
-              --generate-notes
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #- name: Create Release
+      #  if: ${{ format('refs/heads/{0}', github.event.repository.default_branch) == github.ref }}
+      #  run: |
+      #    jar_file=$(basename build/libs/Ethylene**.jar)
+      #    file_name_no_ext="${jar_file%.jar}"
+      #    formatted_name=$(echo "$file_name_no_ext" | sed 's/-/ /g')
+      #    
+      #    gh release create "${{ github.run_number }}" build/libs/Ethylene**.jar \
+      #        --repo="$GITHUB_REPOSITORY" \
+      #        --title="${formatted_name}" \
+      #        --generate-notes
+      #  env:
+      #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
