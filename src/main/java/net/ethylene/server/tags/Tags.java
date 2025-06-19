@@ -1,28 +1,39 @@
 package net.ethylene.server.tags;
 
-import net.minestom.server.MinecraftServer;
-import net.minestom.server.gamedata.tags.Tag;
+import net.minestom.server.instance.block.Block;
 import net.minestom.server.item.ItemStack;
+import net.minestom.server.item.Material;
+import net.minestom.server.registry.RegistryTag;
+import net.minestom.server.registry.TagKey;
 
-import java.util.Objects;
+import java.util.Locale;
 
 public enum Tags {
-    WOODEN_FENCES("wooden_fences", Tag.BasicType.BLOCKS),
-    FENCE_GATES("fence_gates", Tag.BasicType.BLOCKS),
-    AXES("axes", Tag.BasicType.ITEMS);
+    WOODEN_FENCES,
+    FENCE_GATES,
+    AXES,
+    WALLS,
+    SLABS,
+    STAIRS;
     
-    private final String tag;
-    private final Tag.BasicType type;
-    Tags(String tag, Tag.BasicType type) {
-        this.tag = tag;
-        this.type = type;
+    private String getHashTag() {
+        return "#minecraft:" + this.name().toLowerCase(Locale.ENGLISH);
     }
     
-    public Tag get() {
-        return Objects.requireNonNull(MinecraftServer.getTagManager().getTag(type, "minecraft:" + tag));
+    public RegistryTag<Block> getBlockTag() {
+        return Block.staticRegistry().getTag(TagKey.ofHash(getHashTag()));
+    }
+    
+    public RegistryTag<Material> getItemTag() {
+        return Material.staticRegistry().getTag(TagKey.ofHash(getHashTag()));
+        
+    }
+    
+    public boolean contains(Block block) {
+        return getBlockTag().contains(block);
     }
     
     public boolean contains(ItemStack itemStack) {
-        return get().contains(itemStack.material().namespace());
+        return getItemTag().contains(itemStack.material());
     }
 }

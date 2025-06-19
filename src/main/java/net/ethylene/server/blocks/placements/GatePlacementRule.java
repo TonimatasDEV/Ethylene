@@ -1,8 +1,7 @@
 package net.ethylene.server.blocks.placements;
 
-import net.minestom.server.MinecraftServer;
+import net.ethylene.server.tags.Tags;
 import net.minestom.server.coordinate.Point;
-import net.minestom.server.gamedata.tags.Tag;
 import net.minestom.server.instance.block.Block;
 import net.minestom.server.instance.block.BlockFace;
 import net.minestom.server.instance.block.rule.BlockPlacementRule;
@@ -34,17 +33,14 @@ public class GatePlacementRule extends BlockPlacementRule { // TODO: Waterlogged
     private static String inWall(Block block, Point point, Block.Getter instance) {
         String direction = block.getProperty("facing");
 
-        Tag tag = MinecraftServer.getTagManager().getTag(Tag.BasicType.BLOCKS, "minecraft:walls");
-        assert tag != null;
-
         if (direction.equals("north") || direction.equals("south")) {
-            if (tag.contains(instance.getBlock(point.relative(BlockFace.EAST)).namespace()) ||
-                    tag.contains(instance.getBlock(point.relative(BlockFace.WEST)).namespace())) {
+            if (Tags.WALLS.contains(instance.getBlock(point.relative(BlockFace.EAST))) ||
+                    Tags.WALLS.contains(instance.getBlock(point.relative(BlockFace.WEST)))) {
                 return "true";
             }
         } else if (direction.equals("east") || direction.equals("west")) {
-            if (tag.contains(instance.getBlock(point.relative(BlockFace.NORTH)).namespace()) ||
-                    tag.contains(instance.getBlock(point.relative(BlockFace.SOUTH)).namespace())) {
+            if (Tags.WALLS.contains(instance.getBlock(point.relative(BlockFace.NORTH))) ||
+                    Tags.WALLS.contains(instance.getBlock(point.relative(BlockFace.SOUTH)))) {
                 return "true";
             }
         }

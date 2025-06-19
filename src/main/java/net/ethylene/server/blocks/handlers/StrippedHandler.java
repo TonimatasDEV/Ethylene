@@ -1,16 +1,16 @@
 package net.ethylene.server.blocks.handlers;
 
 import net.ethylene.server.tags.Tags;
+import net.kyori.adventure.key.Key;
 import net.minestom.server.entity.Player;
 import net.minestom.server.instance.block.Block;
 import net.minestom.server.instance.block.BlockHandler;
-import net.minestom.server.utils.NamespaceID;
 import org.jetbrains.annotations.NotNull;
 
 public class StrippedHandler implements BlockHandler {
-    protected NamespaceID id;
+    protected Key id;
 
-    public StrippedHandler(NamespaceID id) {
+    public StrippedHandler(Key id) {
         this.id = id;
     }
 
@@ -19,7 +19,8 @@ public class StrippedHandler implements BlockHandler {
         Player player = interaction.getPlayer();
        
         if (Tags.AXES.contains(player.getItemInHand(interaction.getHand()))) {
-            Block block = Block.fromNamespaceId(interaction.getBlock().namespace().toString().replaceAll(":", ":stripped_"));
+            String strippedLog = interaction.getBlock().key().toString().replaceAll(":", ":stripped_");
+            Block block = Block.fromKey(strippedLog);
 
             if (block == null) return false;
 
@@ -30,7 +31,7 @@ public class StrippedHandler implements BlockHandler {
     }
 
     @Override
-    public @NotNull NamespaceID getNamespaceId() {
+    public @NotNull Key getKey() {
         return id;
     }
 }

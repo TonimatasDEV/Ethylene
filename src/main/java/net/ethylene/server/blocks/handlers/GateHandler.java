@@ -1,17 +1,17 @@
 package net.ethylene.server.blocks.handlers;
 
 import net.ethylene.server.utils.Utils;
+import net.kyori.adventure.key.Key;
 import net.minestom.server.instance.block.BlockFace;
 import net.minestom.server.instance.block.BlockHandler;
-import net.minestom.server.utils.NamespaceID;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Locale;
 
 public class GateHandler implements BlockHandler {
-    protected NamespaceID id;
+    protected Key id;
 
-    public GateHandler(NamespaceID id) {
+    public GateHandler(Key id) {
         this.id = id;
     }
 
@@ -49,7 +49,7 @@ public class GateHandler implements BlockHandler {
     }
 
     @Override
-    public @NotNull NamespaceID getNamespaceId() {
+    public @NotNull Key getKey() {
         return id;
     }
 }

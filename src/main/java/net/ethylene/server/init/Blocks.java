@@ -19,47 +19,47 @@ public class Blocks {
         register(new BlastFurnaceHandler());
         register(new SmokerHandler());
 
-        register(new StrippedHandler(Block.ACACIA_LOG.namespace()));
-        register(new StrippedHandler(Block.OAK_LOG.namespace()));
-        register(new StrippedHandler(Block.BIRCH_LOG.namespace()));
-        register(new StrippedHandler(Block.CHERRY_LOG.namespace()));
-        register(new StrippedHandler(Block.JUNGLE_LOG.namespace()));
-        register(new StrippedHandler(Block.DARK_OAK_LOG.namespace()));
-        register(new StrippedHandler(Block.MANGROVE_LOG.namespace()));
-        register(new StrippedHandler(Block.SPRUCE_LOG.namespace()));
+        register(new StrippedHandler(Block.ACACIA_LOG.key()));
+        register(new StrippedHandler(Block.OAK_LOG.key()));
+        register(new StrippedHandler(Block.BIRCH_LOG.key()));
+        register(new StrippedHandler(Block.CHERRY_LOG.key()));
+        register(new StrippedHandler(Block.JUNGLE_LOG.key()));
+        register(new StrippedHandler(Block.DARK_OAK_LOG.key()));
+        register(new StrippedHandler(Block.MANGROVE_LOG.key()));
+        register(new StrippedHandler(Block.SPRUCE_LOG.key()));
 
-        register(new StrippedHandler(Block.ACACIA_WOOD.namespace()));
-        register(new StrippedHandler(Block.OAK_WOOD.namespace()));
-        register(new StrippedHandler(Block.BIRCH_WOOD.namespace()));
-        register(new StrippedHandler(Block.CHERRY_WOOD.namespace()));
-        register(new StrippedHandler(Block.JUNGLE_WOOD.namespace()));
-        register(new StrippedHandler(Block.DARK_OAK_WOOD.namespace()));
-        register(new StrippedHandler(Block.MANGROVE_WOOD.namespace()));
-        register(new StrippedHandler(Block.SPRUCE_WOOD.namespace()));
+        register(new StrippedHandler(Block.ACACIA_WOOD.key()));
+        register(new StrippedHandler(Block.OAK_WOOD.key()));
+        register(new StrippedHandler(Block.BIRCH_WOOD.key()));
+        register(new StrippedHandler(Block.CHERRY_WOOD.key()));
+        register(new StrippedHandler(Block.JUNGLE_WOOD.key()));
+        register(new StrippedHandler(Block.DARK_OAK_WOOD.key()));
+        register(new StrippedHandler(Block.MANGROVE_WOOD.key()));
+        register(new StrippedHandler(Block.SPRUCE_WOOD.key()));
 
-        register(new TrapdoorHandler(Block.OAK_TRAPDOOR.namespace()));
-        register(new TrapdoorHandler(Block.ACACIA_TRAPDOOR.namespace()));
-        register(new TrapdoorHandler(Block.BAMBOO_TRAPDOOR.namespace()));
-        register(new TrapdoorHandler(Block.BIRCH_TRAPDOOR.namespace()));
-        register(new TrapdoorHandler(Block.CHERRY_TRAPDOOR.namespace()));
-        register(new TrapdoorHandler(Block.CRIMSON_TRAPDOOR.namespace()));
-        register(new TrapdoorHandler(Block.DARK_OAK_TRAPDOOR.namespace()));
-        register(new TrapdoorHandler(Block.JUNGLE_TRAPDOOR.namespace()));
-        register(new TrapdoorHandler(Block.MANGROVE_TRAPDOOR.namespace()));
-        register(new TrapdoorHandler(Block.SPRUCE_TRAPDOOR.namespace()));
-        register(new TrapdoorHandler(Block.WARPED_TRAPDOOR.namespace()));
+        register(new TrapdoorHandler(Block.OAK_TRAPDOOR.key()));
+        register(new TrapdoorHandler(Block.ACACIA_TRAPDOOR.key()));
+        register(new TrapdoorHandler(Block.BAMBOO_TRAPDOOR.key()));
+        register(new TrapdoorHandler(Block.BIRCH_TRAPDOOR.key()));
+        register(new TrapdoorHandler(Block.CHERRY_TRAPDOOR.key()));
+        register(new TrapdoorHandler(Block.CRIMSON_TRAPDOOR.key()));
+        register(new TrapdoorHandler(Block.DARK_OAK_TRAPDOOR.key()));
+        register(new TrapdoorHandler(Block.JUNGLE_TRAPDOOR.key()));
+        register(new TrapdoorHandler(Block.MANGROVE_TRAPDOOR.key()));
+        register(new TrapdoorHandler(Block.SPRUCE_TRAPDOOR.key()));
+        register(new TrapdoorHandler(Block.WARPED_TRAPDOOR.key()));
 
-        register(new GateHandler(Block.OAK_FENCE_GATE.namespace()));
-        register(new GateHandler(Block.ACACIA_FENCE_GATE.namespace()));
-        register(new GateHandler(Block.BAMBOO_FENCE_GATE.namespace()));
-        register(new GateHandler(Block.BIRCH_FENCE_GATE.namespace()));
-        register(new GateHandler(Block.CHERRY_FENCE_GATE.namespace()));
-        register(new GateHandler(Block.CRIMSON_FENCE_GATE.namespace()));
-        register(new GateHandler(Block.DARK_OAK_FENCE_GATE.namespace()));
-        register(new GateHandler(Block.JUNGLE_FENCE_GATE.namespace()));
-        register(new GateHandler(Block.MANGROVE_FENCE_GATE.namespace()));
-        register(new GateHandler(Block.SPRUCE_FENCE_GATE.namespace()));
-        register(new GateHandler(Block.WARPED_FENCE_GATE.namespace()));
+        register(new GateHandler(Block.OAK_FENCE_GATE.key()));
+        register(new GateHandler(Block.ACACIA_FENCE_GATE.key()));
+        register(new GateHandler(Block.BAMBOO_FENCE_GATE.key()));
+        register(new GateHandler(Block.BIRCH_FENCE_GATE.key()));
+        register(new GateHandler(Block.CHERRY_FENCE_GATE.key()));
+        register(new GateHandler(Block.CRIMSON_FENCE_GATE.key()));
+        register(new GateHandler(Block.DARK_OAK_FENCE_GATE.key()));
+        register(new GateHandler(Block.JUNGLE_FENCE_GATE.key()));
+        register(new GateHandler(Block.MANGROVE_FENCE_GATE.key()));
+        register(new GateHandler(Block.SPRUCE_FENCE_GATE.key()));
+        register(new GateHandler(Block.WARPED_FENCE_GATE.key()));
 
         // Placements
 
@@ -350,7 +350,7 @@ public class Blocks {
     }
 
     private static void register(BlockHandler blockHandler) {
-        MinecraftServer.getBlockManager().registerHandler(blockHandler.getNamespaceId(), () -> blockHandler);
+        MinecraftServer.getBlockManager().registerHandler(blockHandler.getKey(), () -> blockHandler);
     }
 
     private static void register(BlockPlacementRule blockHandler) {
