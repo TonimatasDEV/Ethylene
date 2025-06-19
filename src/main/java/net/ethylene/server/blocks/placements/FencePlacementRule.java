@@ -38,13 +38,13 @@ public class FencePlacementRule extends BlockPlacementRule { // TODO: Waterlogge
             Block blockWithDirection = block.withProperty(face.name().toLowerCase(Locale.ENGLISH), "true");
 
             if (faceBlock.registry().collisionShape().isOccluded(blockWithDirection.registry().collisionShape(), face)
-                    || Tags.WOODEN_FENCES.get().contains(faceBlock.key())) {
+                    || Tags.WOODEN_FENCES.contains(faceBlock)) {
                 properties.put(face.name().toLowerCase(Locale.ENGLISH), "true");
             } else {
                 properties.put(face.name().toLowerCase(Locale.ENGLISH), "false");
             }
 
-            if (Tags.FENCE_GATES.get().contains(faceBlock.key())) {
+            if (Tags.FENCE_GATES.contains(faceBlock)) {
                 BlockFace gateFace = BlockFace.valueOf(faceBlock.getProperty("facing").toUpperCase(Locale.ENGLISH));
 
                 boolean connect = switch (face) {
@@ -57,7 +57,7 @@ public class FencePlacementRule extends BlockPlacementRule { // TODO: Waterlogge
             }
 
             if (block.key().equals(Block.NETHER_BRICK_FENCE.key())) {
-                if (Tags.WOODEN_FENCES.get().contains(faceBlock.key())) {
+                if (Tags.WOODEN_FENCES.contains(faceBlock)) {
                     properties.put(face.name().toLowerCase(Locale.ENGLISH), "false");
                 } else if (faceBlock.key().equals(Block.NETHER_BRICK_FENCE.key())) {
                     properties.put(face.name().toLowerCase(Locale.ENGLISH), "true");

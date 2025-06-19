@@ -1,6 +1,7 @@
 package net.ethylene.server.events;
 
 import net.ethylene.server.init.Levels;
+import net.ethylene.server.tags.Tags;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.Style;
@@ -13,7 +14,6 @@ import net.minestom.server.entity.Player;
 import net.minestom.server.entity.PlayerSkin;
 import net.minestom.server.event.GlobalEventHandler;
 import net.minestom.server.event.player.*;
-import net.minestom.server.gamedata.tags.Tag;
 import net.minestom.server.instance.block.Block;
 import net.minestom.server.instance.block.BlockHandler;
 
@@ -49,10 +49,7 @@ public class PlayerEvents {
 
                 Block relativeBlock = event.getInstance().getBlock(relativePoint);
 
-                Tag tag = MinecraftServer.getTagManager().getTag(Tag.BasicType.BLOCKS, "minecraft:slabs");
-                assert tag != null;
-
-                if ((tag.contains(blockInHand.key()) && tag.contains(relativeBlock.key())) && relativeBlock.compare(blockInHand) && blockInHand.properties().get("type").equals("bottom")) {
+                if ((Tags.SLABS.contains(blockInHand) && Tags.SLABS.contains(relativeBlock)) && relativeBlock.compare(blockInHand) && blockInHand.properties().get("type").equals("bottom")) {
                     event.getInstance().setBlock(relativePoint, relativeBlock.withProperty("type", "double"), true);
                 }
             }

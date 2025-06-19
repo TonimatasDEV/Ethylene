@@ -19,7 +19,8 @@ public class StrippedHandler implements BlockHandler {
         Player player = interaction.getPlayer();
        
         if (Tags.AXES.contains(player.getItemInHand(interaction.getHand()))) {
-            Block block = Block.fromKey(interaction.getBlock().key().toString().replaceAll(":", ":stripped_"));
+            String strippedLog = interaction.getBlock().key().toString().replaceAll(":", ":stripped_");
+            Block block = Block.fromKey(strippedLog);
 
             if (block == null) return false;
 

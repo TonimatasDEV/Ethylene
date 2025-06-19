@@ -1,9 +1,8 @@
 package net.ethylene.server.blocks.placements;
 
+import net.ethylene.server.tags.Tags;
 import net.ethylene.server.utils.Utils;
-import net.minestom.server.MinecraftServer;
 import net.minestom.server.coordinate.Point;
-import net.minestom.server.gamedata.tags.Tag;
 import net.minestom.server.instance.block.Block;
 import net.minestom.server.instance.block.BlockFace;
 import net.minestom.server.instance.block.rule.BlockPlacementRule;
@@ -56,9 +55,7 @@ public class StairPlacementRule extends BlockPlacementRule {
     }
 
     private static boolean isStair(Block block) {
-        Tag tag = MinecraftServer.getTagManager().getTag(Tag.BasicType.BLOCKS, "minecraft:stairs");
-        assert tag != null;
-        return tag.contains(block.key());
+        return Tags.STAIRS.contains(block);
     }
 
     @Override
