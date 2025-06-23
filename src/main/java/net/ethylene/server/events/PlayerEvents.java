@@ -16,6 +16,9 @@ import net.minestom.server.event.GlobalEventHandler;
 import net.minestom.server.event.player.*;
 import net.minestom.server.instance.block.Block;
 import net.minestom.server.instance.block.BlockHandler;
+import net.minestom.server.inventory.PlayerInventory;
+import net.minestom.server.item.ItemStack;
+import net.minestom.server.item.Material;
 
 public class PlayerEvents {
     public static void init(GlobalEventHandler handler) {
@@ -35,6 +38,43 @@ public class PlayerEvents {
         handler.addListener(AsyncPlayerPreLoginEvent.class, event -> Audiences.all().sendMessage(Component.text(event.getGameProfile().name() + " joined the game").style(Style.style(NamedTextColor.YELLOW))));
         handler.addListener(PlayerDisconnectEvent.class, event -> Audiences.all().sendMessage(Component.text(event.getPlayer().getUsername() + " left the game").style(Style.style(NamedTextColor.YELLOW))));
 
+        handler.addListener(PlayerPickBlockEvent.class, event -> {
+            Material material = event.getBlock().registry().material();
+
+            if (material == null) {
+                return;
+            }
+
+            Player player = event.getPlayer();
+            ItemStack itemStack = ItemStack.of(material);
+            PlayerInventory inventory = event.getPlayer().getInventory();
+
+            for (int slot = 0; slot < 9; slot++) {
+                ItemStack item = inventory.getItemStack(slot);
+                if (item.material() == material) {
+                    player.setHeldItemSlot((byte) slot);
+                    return;
+                }
+            }
+
+            if (event.getPlayer().getItemInMainHand().isAir()) {
+                event.getPlayer().setItemInMainHand(itemStack);
+                return;
+            }
+
+            for (int slot = 0; slot < 9; slot++) {
+                ItemStack item = inventory.getItemStack(slot);
+                if (item.isAir()) {
+                    player.setHeldItemSlot((byte) slot);
+                    inventory.setItemStack(slot, itemStack);
+                    return;
+                }
+            }
+            
+            // TODO: Full hotbar things
+            player.setItemInMainHand(itemStack);
+        });
+        
         handler.addListener(PlayerBlockInteractEvent.class, event -> {
             Block blockInHand = event.getPlayer().getItemInHand(event.getHand()).material().block();
 
