@@ -19,6 +19,11 @@ public class Levels {
 
         OVERWORLD.setChunkLoader(new AnvilLoader("world"));
         OVERWORLD.setChunkSupplier(LightingChunk::new);
-        OVERWORLD.setGenerator(unit -> unit.modifier().fillHeight(0, 40, Block.GRASS_BLOCK));
+        OVERWORLD.setGenerator(unit -> {
+            unit.modifier().fillHeight(39, 40, Block.GRASS_BLOCK);
+            unit.modifier().fillHeight(36, 39, Block.DIRT);
+            unit.modifier().fillHeight(1, 36, Block.STONE);
+            unit.modifier().fillHeight(0, 1, Block.BEDROCK);
+        });
     }
 }
