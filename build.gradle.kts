@@ -11,6 +11,7 @@ plugins {
 val minecraftVersion: String by extra
 val minestomVersion: String by extra
 val logbackVersion: String by extra
+val blocksAndStuffVersion: String by extra
 
 group = "net.etyhelene"
 version = minecraftVersion + "-" + (System.getenv("VERSION") ?: "dev")
@@ -19,11 +20,15 @@ sourceSets.main.get().resources.srcDirs("src/main/resources")
 
 repositories {
     mavenCentral()
+    maven("https://mvn.everbuild.org/public")
 }
 
 dependencies {
     implementation("net.minestom:minestom-snapshots:$minestomVersion")
     implementation("ch.qos.logback:logback-classic:$logbackVersion")
+    // https://mvn.everbuild.org/#/public/org/everbuild/blocksandstuff
+    implementation("org.everbuild.blocksandstuff:blocksandstuff-blocks:$blocksAndStuffVersion")
+    implementation("org.everbuild.blocksandstuff:blocksandstuff-fluids:$blocksAndStuffVersion")
 }
 
 tasks.register<CreateTextFile>("createLibrariesFile") {
