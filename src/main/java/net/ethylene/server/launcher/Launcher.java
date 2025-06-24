@@ -13,8 +13,7 @@ public class Launcher {
         }
 
         try {
-            if (!ServerEula.checkEula(Path.of("eula.txt"), Arrays.asList(args).contains("-accepteula")))
-                return;
+            if (!ServerEula.checkEula(Path.of("eula.txt"), Arrays.asList(args).contains("-accepteula"))) return;
         } catch (IOException e) {
             System.out.println("Error on load eula.");
             throw new RuntimeException(e);

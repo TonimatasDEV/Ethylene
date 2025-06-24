@@ -7,7 +7,6 @@ import java.nio.file.Path;
 import java.util.Properties;
 import java.util.Scanner;
 
-//A straight-up copy of the minecraft ServerEula class (well except the SharedConstants).
 public class ServerEula {
     private final Path file;
     private final boolean agreed;
@@ -17,17 +16,15 @@ public class ServerEula {
         this.agreed = this.readFile();
     }
 
-    @SuppressWarnings({"ResultOfMethodCallIgnored", "LoggingSimilarMessage"})
+    @SuppressWarnings({"ResultOfMethodCallIgnored"})
     public static boolean checkEula(Path path, boolean accepteula) throws IOException {
         File file = path.toFile();
         ServerEula eula = new ServerEula(path);
 
         if (!eula.hasAgreedToEULA()) {
-            int wrong = 0;
-
             Scanner console = null;
             if (!accepteula) {
-                System.out.println("WARNING: It appears you have not agreed to the EULA.\nPlease read the EULA (https://account.mojang.com/documents/minecraft_eula) and type 'yes' to continue.");
+                System.out.println("WARNING: It appears you have not agreed to the EULA.\nPlease read the EULA (https://aka.ms/MinecraftEULA) and type 'yes' to continue.");
                 System.out.print("Do you accept? (yes/no): ");
                 console = new Scanner(System.in);
             }
@@ -35,11 +32,6 @@ public class ServerEula {
             while (true) {
                 String answer = console != null ? console.nextLine() : "yes";
                 if (answer == null || answer.isBlank()) {
-                    if (wrong++ >= 2) {
-                        System.out.println("You have typed the wrong answer too many times. Exiting.");
-                        return false;
-                    }
-
                     System.out.println("Please type 'yes' or 'no'.");
                     System.out.print("Do you accept? (yes/no): ");
                     continue;
@@ -49,9 +41,7 @@ public class ServerEula {
                     case "y", "yes" -> {
                         file.delete();
                         file.createNewFile();
-                        try (FileWriter writer = new FileWriter(file)) {
-                            writer.write("eula=true");
-                        }
+                        eula.save(true);
                         return true;
                     }
                     case "n", "no" -> {
@@ -59,10 +49,6 @@ public class ServerEula {
                         return false;
                     }
                     default -> {
-                        if (wrong++ >= 2) {
-                            System.out.println("You have typed the wrong answer too many times. Exiting.");
-                            return false;
-                        }
                         System.out.println("Please type 'yes' or 'no'.");
                         System.out.print("Do you accept? (yes/no): ");
                     }
@@ -79,7 +65,7 @@ public class ServerEula {
             properties.load(inputstream);
             return Boolean.parseBoolean(properties.getProperty("eula", "false"));
         } catch (Exception exception) {
-            this.saveDefaults();
+            this.save(false);
             return false;
         }
     }
@@ -88,11 +74,11 @@ public class ServerEula {
         return this.agreed;
     }
 
-    private void saveDefaults() {
+    private void save(boolean agreed) {
         try (OutputStream outputstream = Files.newOutputStream(this.file)) {
             Properties properties = new Properties();
-            properties.setProperty("eula", "false");
-            properties.store(outputstream, "By changing the setting below to TRUE you are indicating your agreement to our EULA (https://account.mojang.com/documents/minecraft_eula).");
+            properties.setProperty("eula", Boolean.toString(agreed));
+            properties.store(outputstream, "By changing the setting below to TRUE you are indicating your agreement to our EULA (https://aka.ms/MinecraftEULA).");
         } catch (Exception exception) {
             System.out.println("Could not save " + this.file + ": " + exception.getMessage());
         }
