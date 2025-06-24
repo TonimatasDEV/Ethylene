@@ -1,0 +1,14 @@
+[versions]
+minestom = "1_21_6-c3ccee696b" # https://mvnrepository.com/artifact/net.minestom/minestom-snapshots
+logback = "1.5.18" # https://github.com/qos-ch/logback/releases
+blocksandstuff = "1.2.0-SNAPSHOT" # https://mvn.everbuild.org/#/public/org/everbuild/blocksandstuff
+
+
+[libraries]
+minestom = { group = "net.minestom", name = "minestom-snapshots", version.ref = "minestom" }
+logback = { group = "ch.qos.logback", name = "logback-classic", version.ref = "logback" }
+blocks = { group = "org.everbuild.blocksandstuff", name = "blocksandstuff-blocks", version.ref = "blocksandstuff"}
+fluids = { group = "org.everbuild.blocksandstuff", name = "blocksandstuff-fluids", version.ref = "blocksandstuff"}
+
+[bundles]
+server = ["minestom", "logback", "blocks", "fluids"]
