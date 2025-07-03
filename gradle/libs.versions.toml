@@ -1,7 +1,7 @@
 [versions]
 minestom = "1_21_6-c3ccee696b" # https://mvnrepository.com/artifact/net.minestom/minestom-snapshots
 logback = "1.5.18" # https://github.com/qos-ch/logback/releases
-blocksandstuff = "1.2.0-SNAPSHOT" # https://mvn.everbuild.org/#/public/org/everbuild/blocksandstuff
+blocksandstuff = "1.4.0-SNAPSHOT" # https://mvn.everbuild.org/#/public/org/everbuild/blocksandstuff
 
 
 [libraries]
