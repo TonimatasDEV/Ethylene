@@ -7,6 +7,7 @@ Ethylene is a combination of different libraries for Minestom to make a Minecraf
   - Blocks and Fluids
 - [Minestom: Recipes](https://github.com/TonimatasDEV/minestom-recipes)
   - Recipes
+- [ ] Properties
 - [ ] Instances (Worlds)
 - [ ] Commands
 - [ ] Entities
