@@ -17,6 +17,7 @@ sourceSets.main.get().resources.srcDirs("src/main/resources")
 
 repositories {
     mavenCentral()
+    maven("https://jitpack.io")
     maven("https://mvn.everbuild.org/public")
 }
 
