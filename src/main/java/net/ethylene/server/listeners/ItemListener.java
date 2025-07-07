@@ -1,4 +1,4 @@
-package net.ethylene.server.events;
+package net.ethylene.server.listeners;
 
 import net.minestom.server.coordinate.Pos;
 import net.minestom.server.coordinate.Vec;
@@ -9,7 +9,7 @@ import net.minestom.server.event.item.ItemDropEvent;
 import net.minestom.server.event.item.PickupItemEvent;
 import net.minestom.server.utils.time.TimeUnit;
 
-public class ItemEvents {
+public class ItemListener {
     public static void init(GlobalEventHandler handler) {
         handler.addListener(ItemDropEvent.class, event -> {
             ItemEntity itemEntity = new ItemEntity(event.getItemStack());

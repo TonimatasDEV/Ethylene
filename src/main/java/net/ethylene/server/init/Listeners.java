@@ -1,15 +1,15 @@
 package net.ethylene.server.init;
 
-import net.ethylene.server.events.ItemEvents;
-import net.ethylene.server.events.PlayerEvents;
+import net.ethylene.server.listeners.ItemListener;
+import net.ethylene.server.listeners.PlayerListeners;
 import net.minestom.server.MinecraftServer;
 import net.minestom.server.event.GlobalEventHandler;
 
-public class Events {
+public class Listeners {
     public static void init() {
         GlobalEventHandler globalEventHandler = MinecraftServer.getGlobalEventHandler();
 
-        PlayerEvents.init(globalEventHandler);
-        ItemEvents.init(globalEventHandler);
+        PlayerListeners.init(globalEventHandler);
+        ItemListener.init(globalEventHandler);
     }
 }

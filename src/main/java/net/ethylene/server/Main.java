@@ -30,7 +30,7 @@ public class Main {
 
         MojangAuth.init();
         Levels.init();
-        Events.init();
+        Listeners.init();
         Commands.init();
         Schedulers.init();
 

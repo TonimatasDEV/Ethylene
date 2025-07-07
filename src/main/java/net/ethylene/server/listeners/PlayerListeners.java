@@ -1,4 +1,4 @@
-package net.ethylene.server.events;
+package net.ethylene.server.listeners;
 
 import net.ethylene.server.init.Levels;
 import net.kyori.adventure.text.Component;
@@ -11,15 +11,12 @@ import net.minestom.server.entity.GameMode;
 import net.minestom.server.entity.Player;
 import net.minestom.server.entity.PlayerSkin;
 import net.minestom.server.event.GlobalEventHandler;
-import net.minestom.server.event.player.AsyncPlayerConfigurationEvent;
-import net.minestom.server.event.player.AsyncPlayerPreLoginEvent;
-import net.minestom.server.event.player.PlayerDisconnectEvent;
-import net.minestom.server.event.player.PlayerPickBlockEvent;
+import net.minestom.server.event.player.*;
 import net.minestom.server.inventory.PlayerInventory;
 import net.minestom.server.item.ItemStack;
 import net.minestom.server.item.Material;
 
-public class PlayerEvents {
+public class PlayerListeners {
     public static void init(GlobalEventHandler handler) {
         handler.addListener(AsyncPlayerConfigurationEvent.class, event -> {
             if (MinecraftServer.isStopping()) {
@@ -36,7 +33,7 @@ public class PlayerEvents {
 
         handler.addListener(AsyncPlayerPreLoginEvent.class, event -> Audiences.all().sendMessage(Component.text(event.getGameProfile().name() + " joined the game").style(Style.style(NamedTextColor.YELLOW))));
         handler.addListener(PlayerDisconnectEvent.class, event -> Audiences.all().sendMessage(Component.text(event.getPlayer().getUsername() + " left the game").style(Style.style(NamedTextColor.YELLOW))));
-
+        
         handler.addListener(PlayerPickBlockEvent.class, event -> {
             Material material = event.getBlock().registry().material();
 
