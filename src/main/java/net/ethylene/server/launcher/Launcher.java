@@ -7,7 +7,7 @@ import java.nio.file.Path;
 import java.util.Arrays;
 
 public class Launcher {
-    public static void main(String[] args) {
+    static void main(String[] args) {
         if (!Arrays.asList(args).contains("-nolibraries")) {
             LibraryInstaller.init();
         }
@@ -19,6 +19,6 @@ public class Launcher {
             throw new RuntimeException(e);
         }
 
-        Main.main(args);
+        Main.main();
     }
 }

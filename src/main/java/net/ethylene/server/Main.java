@@ -1,8 +1,8 @@
 package net.ethylene.server;
 
 import net.ethylene.server.init.*;
+import net.minestom.server.Auth;
 import net.minestom.server.MinecraftServer;
-import net.minestom.server.extras.MojangAuth;
 import org.everbuild.blocksandstuff.blocks.BlockBehaviorRuleRegistrations;
 import org.everbuild.blocksandstuff.blocks.BlockPlacementRuleRegistrations;
 import org.everbuild.blocksandstuff.blocks.PlacedHandlerRegistration;
@@ -14,10 +14,10 @@ public class Main {
     public static Logger LOGGER = LoggerFactory.getLogger(Main.class);
     private static Thread consoleThread;
 
-    public static void main(String[] args) {
+    public static void main() {
         long startTime = System.currentTimeMillis();
 
-        MinecraftServer server = MinecraftServer.init();
+        MinecraftServer server = MinecraftServer.init(new Auth.Online());
 
         // Libraries - Start
         // BlockAndStuff
@@ -28,7 +28,6 @@ public class Main {
         MinestomFluids.enableVanillaFluids();
         // Libraries - End
 
-        MojangAuth.init();
         Levels.init();
         Listeners.init();
         Commands.init();
