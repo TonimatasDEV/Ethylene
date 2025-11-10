@@ -1,5 +1,5 @@
 [versions]
-minestom = "2025.10.18-1.21.10" # https://mvnrepository.com/artifact/net.minestom/minestom-snapshots
+minestom = "2025.10.31-1.21.10" # https://mvnrepository.com/artifact/net.minestom/minestom-snapshots
 logback = "1.5.20" # https://github.com/qos-ch/logback/releases
 blocksandstuff = "1.9.0-SNAPSHOT" # https://mvn.everbuild.org/#/public/org/everbuild/blocksandstuff
 #loot-tables = "3.0" # https://github.com/GoldenStack/trove/releases
