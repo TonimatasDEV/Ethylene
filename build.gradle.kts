@@ -58,7 +58,7 @@ application {
     mainClass = "net.ethylene.server.launcher.Launcher"
 }
 
-tasks.named<JavaExec>("run") {
+tasks.run {
     val path = rootDir.toPath().resolve("run")
     
     args = listOf("-nolibraries", "-accepteula")
